@@ -3,7 +3,14 @@ rhok-welthunger
 
 To check if OpenCV is running just compile the hello world like so:
 
+g++ `pkg-config --cflags opencv` hello_world.cpp -o hello-world `pkg-config --libs opencv`
+
+Maybe as an alernative:
 g++ hello_world.cpp $(pkg-config opencv –libs –cflags)
+
+=======
+by hand:
+g++ -I/usr/include/opencv hello_world.cpp -lopencv_core -lopencv_imgproc -lopencv_highgui
 
 =============================================================================
 
@@ -21,3 +28,4 @@ http://landsat.usgs.gov/documents/June_2010_Vierling%20-%20Idaho%20Remote%20Sens
 
 De facto muss man sich da reinarbeiten. Daher werden ja auch Spezialisten normalerweise fürstlich bezahlt.
 Sie wissen bestimmt besser, ob sich aus der Sache fuer Ihre Gruppe etwas machen lässt. 
+
