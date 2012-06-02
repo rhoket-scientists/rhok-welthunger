@@ -2,61 +2,70 @@
 #include <iostream>
 #include <vector>
 
+int HEIGHT = 400;
+int WIDTH = 400;
+
 Application::Application(int argc, char *argv[])
 {
     std::vector<cv::Mat> imageFiles;
+    /*cv::Mat foo(cv::Size(WIDTH, HEIGHT), CV_8UC1);
+    cv::resize(cv::imread(argv[1]), foo, cv::Size(WIDTH,HEIGHT));
+
+    cv::namedWindow("Main");
+    cv::imshow("Main", foo);*/
 
     for(int i = 1; i < argc; i++) {
-        cv::Mat foo(cv::Size(4044, 3570), CV_8UC1);
-        cv::resize(cv::imread(argv[i]), foo, foo.size());
+        cv::Mat foo = cv::imread(argv[i]);
+        std::cout << foo.rows << ',' << foo.cols << "\n";
         imageFiles.push_back(foo);
     }
 
-    cv::Mat output;
+    /*cv::Mat output(cv::Size(WIDTH, HEIGHT), CV_8UC3);
     output.create(imageFiles[0].size(), CV_8UC1);
-
+*/
     //cv::namedWindow("Main");
 
 
-    cv::Mat out(cv::Size(4044, 3570), CV_8UC3);
+    cv::Mat out(cv::Size(8087, 7139), CV_8UC3);
 
-    //std::cout << out << std::endl;
-
-
-
-    for(int i = 0; i < imageFiles.size(); i++) {
-        //std::cout << imageFiles[i].cols * imageFiles[i].rows << std::endl;
-    }
-
+    std::cout << out.rows << ", ";
+    std::cout << out.cols << std::endl;
 
     for(int i = 0; i < 3; i++) {
-        for(int x = 0; x < imageFiles[i].rows; x++) {
-            for(int y = 0; y < imageFiles[i].cols; y++) {
-                out.at<cv::Vec3b>(x,y)[i] = imageFiles[i].at<short>(x,y);
+        for(int col = 0; col < imageFiles[i].cols; col++) {
+            for(int row = 0; row < imageFiles[i].rows; row++) {
+                out.at<cv::Vec3b>(row, col)[i] = imageFiles[i].at<short>(row, col);
             }
         }
     }
 
+    cv::imwrite("rgb.tif", out);
+
+    /*
     std::vector<std::vector<cv::Point> >  contours;
 
     int minRed = 0;
     int maxBlue, maxGreen = 255;
-    const int WHITE = 255;
-    const int BLACK = 0;
+    const short WHITE = 255;
+    const short BLACK = 0;
 
-    cv::Mat redImg(4044, 3570, CV_8UC3);
+    cv::Mat redImg(cv::Size(4044, 3570), CV_8UC3);
 
-    cv::Mat result(4044, 3570, CV_8UC1);
+    cv::Mat result(cv::Size(4044, 3570), CV_8UC1);
 
-    for(int x = 0; x < out.rows; x++) {
-        for(int y = 0; y < out.cols; y++) {
-            cv::Vec3b pixel = out.at<cv::Vec3b>(x,y);
-            if((pixel[2] >= minRed) /*and (pixel[0] < maxBlue) and (pixel[1] < maxGreen)*/) {
-                result.at<short>(x, y) = WHITE;
-                //std::cout << "Hi"<< std::endl;
+    cv::Vec3b pixel;
+    std::cout << out.rows << ", ";
+    std::cout << out.cols << std::endl;
+
+    for(int x = 0; x < out.cols;  x++) {
+        for(int y = 0; y < out.rows; y++) {
+            pixel = out.at<cv::Vec3b>(y,x);
+            if(pixel[2] >= minRed /*and (pixel[0] < maxBlue) and (pixel[1] < maxGreen)) {
+                result.at<short>(y,x) = WHITE;
+                //std::cout << (short) pixel[2] << std::endl;
             }
             else {
-                result.at<short>(x,y) = BLACK;
+                result.at<short>(y,x) = BLACK;
             }
         }
     }
@@ -77,12 +86,13 @@ Application::Application(int argc, char *argv[])
 
     cv::imwrite("outImg.tif", result);
     cv::imwrite("rgb.tif", out);
-}
+    cv::imwrite("rgb.tif", out);
+*/}
 
 
 
 int main(int argc, char *argv[]) {
     Application foo (argc, argv);
-    //std::cin.get();
+    std::cin.get();
     return 0;
 }
