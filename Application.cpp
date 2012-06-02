@@ -15,7 +15,7 @@ Application::Application(int argc, char *argv[])
     cv::Mat output;
     output.create(imageFiles[0].size(), CV_8UC1);
 
-    cv::namedWindow("Main");
+    //cv::namedWindow("Main");
 
 
     cv::Mat out(cv::Size(4044, 3570), CV_8UC3);
@@ -28,9 +28,15 @@ Application::Application(int argc, char *argv[])
         std::cout << imageFiles[i].cols * imageFiles[i].rows << std::endl;
     }
 
-    //cv::merge(imageFiles, out);
 
-    cv::imwrite("outImg.tif", out);
+    for(int i = 0; i < 3; i++) {
+        for(int x = 0; x < imageFiles[i].rows; x++) {
+            for(int y = 0; y < imageFiles[i].cols; y++) {
+                out.at<cv::Vec3b>(x,y)[i] = imageFiles[i].at<short>(x,y);
+            }
+        }
+        cv::imwrite("outImg.tif", out);
+    }
 }
 
 
