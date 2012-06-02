@@ -8,6 +8,11 @@ g++ `pkg-config --cflags opencv` hello_world.cpp -o hello-world `pkg-config --li
 Maybe as an alernative:
 g++ hello_world.cpp $(pkg-config opencv –libs –cflags)
 
+
+Include the images into an img/ folder and run the program:
+
+make && ./app img/p201r055_7dt20010302_z28_20.tif img/p201r055_7dt20010302_z28_30.tif img/p201r055_7dt20010302_z28_40.tif && open outImg.tif
+
 =======
 by hand:
 g++ -I/usr/include/opencv hello_world.cpp -lopencv_core -lopencv_imgproc -lopencv_highgui
