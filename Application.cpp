@@ -32,12 +32,13 @@ Application::Application(int argc, char *argv[])
     std::cout << out.cols << std::endl;
 
     for(int i = 0; i < 3; i++) {
-        for(int col = 0; col < imageFiles[i].cols; col++) {
-            for(int row = 0; row < imageFiles[i].rows; row++) {
-                out.at<cv::Vec3b>(row, col)[i] = imageFiles[i].at<short>(row, col);
+        for(int row = 0; row < imageFiles[i].rows; row++) {
+            for(int col = 0; col < imageFiles[i].cols; col++) {
+                out.at<cv::Vec3b>(row, col)[i] = imageFiles[i].at<unsigned char>(row, col);
             }
         }
     }
+
 
     cv::imwrite("rgb.tif", out);
 
