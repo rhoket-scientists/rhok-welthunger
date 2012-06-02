@@ -13,7 +13,9 @@ by hand:
 g++ -I/usr/include/opencv hello_world.cpp -lopencv_core -lopencv_imgproc -lopencv_highgui
 
 =============================================================================
-
+to run under Linux:
+export LD_LIBRARY_PATH=/usr/local/lib
+====================================
 Am 28.05.2012 12:49, schrieb Jochen.Moninger@welthungerhilfe.de:
 Hier ist der earth explorer: http://earthexplorer.usgs.gov/
 Dort kann man die Bilderzeitreihen runterladen
