@@ -12,8 +12,6 @@ Application::Application(int argc, char *argv[])
         imageFiles.push_back(foo);
     }
 
-    std::cout << imageFiles[0].rows << std::endl;
-
     cv::Mat output;
     output.create(imageFiles[0].size(), CV_8UC1);
 
@@ -23,6 +21,12 @@ Application::Application(int argc, char *argv[])
     cv::Mat out(cv::Size(4044, 3570), CV_8UC3);
 
     //std::cout << out << std::endl;
+
+
+
+    for(int i = 0; i < imageFiles.size(); i++) {
+        std::cout << imageFiles[i].cols * imageFiles[i].rows << std::endl;
+    }
 
     //cv::merge(imageFiles, out);
 
