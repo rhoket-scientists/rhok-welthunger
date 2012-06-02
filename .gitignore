@@ -2,6 +2,7 @@
 *.slo
 *.lo
 *.o
+*.d
 
 # Compiled Dynamic libraries
 *.so
@@ -10,3 +11,16 @@
 *.lai
 *.la
 *.a
+
+
+# QT Creator foo
+
+*.creator*
+*.files
+*.includes
+*.config
+
+#Images
+*.tif
+
+app
