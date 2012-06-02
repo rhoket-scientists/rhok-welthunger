@@ -10,7 +10,7 @@ private:
 
 public:
     static bool threshold(cv::Mat& src, cv::Mat& dst);
-    static bool contours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
+    static bool findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
     static bool merge(std::vector<cv::Mat>& src, cv::Mat& dst);
 };
 

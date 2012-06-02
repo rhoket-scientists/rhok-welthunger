@@ -27,25 +27,21 @@ Application::Application(int argc, char *argv[])
     //std::cout << out.rows << ", ";
     //std::cout << out.cols << std::endl;
 
-
     // ImageProcessor
     //cv::imwrite("rgb.tif", out);
 
-
-
     cv::Mat thresholdImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
     ImageProcessor::threshold(falseColorImage, thresholdImage);
-
 
     //cv::threshold(result, redImg, 10, 255, cv::THRESH_TOZERO_INV);
     //cv::threshold(result,result, 0, , CV_THRESH_TOZERO);
     //std::cout << result;
 
     std::vector<std::vector<cv::Point> >  contours;
-    cv::Mat contoursImage;
-    thresholdImage.copyTo(contoursImage);
-    ImageProcessor::contours(thresholdImage,contours);
+    cv::Mat contoursImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
+    ImageProcessor::findContours(thresholdImage,contours);
 
+    contoursImage = falseColorImage.clone();
     cv::drawContours(contoursImage, contours, -1, cv::Scalar::all(WHITE));
 
     cv::imwrite("falseColorImage.tif", falseColorImage);
