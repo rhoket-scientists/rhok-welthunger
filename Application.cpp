@@ -18,20 +18,19 @@ Application::Application(int argc, char *argv[])
     ImageProcessor::merge(imageFiles, falseColorImage);
 
     cv::Mat thresholdImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
-    ImageProcessor::threshold(falseColorImage, thresholdImage);
-
+    std::cout << ImageProcessor::threshold(falseColorImage, thresholdImage) << "\n";
+/*
     std::vector<std::vector<cv::Point> >  contours;
-    cv::Mat contoursImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
-    cv::Mat thresholdCopy(cv::Size(WIDTH, HEIGHT), CV_8UC1);
-    contoursImage.copyTo(thresholdCopy);
-    ImageProcessor::findContours(thresholdCopy, contours);
-
-    contoursImage = falseColorImage.clone();
-    cv::drawContours(contoursImage, contours, -1, cv::Scalar::all(WHITE));
-
+    cv::Mat contoursImage(cv::Size(WIDTH, HEIGHT), CV_8UC3);
+    ImageProcessor::findContours(thresholdImage, contours);
+    std::cout << contours.size() << "\n";
+//    contoursImage = falseColorImage.clone();
+    contours.erase(contours.begin());
+    cv::drawContours(contoursImage, contours, -1, cv::Scalar(0,255,0), -1);
+*/
     cv::imwrite("falseColorImage.tif", falseColorImage);
     cv::imwrite("thresholdImage.tif", thresholdImage);
-    cv::imwrite("contoursImage.tif", contoursImage);
+  //  cv::imwrite("contoursImage.tif", contoursImage);
 }
 
 
