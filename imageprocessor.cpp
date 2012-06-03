@@ -1,8 +1,12 @@
 #include "imageprocessor.h"
 #include "globals.h"
 
-//ImageProcessor::ImageProcessor()
-//{}
+ImageProcessor::ImageProcessor(unsigned char minRed, unsigned char maxGreen, unsigned char maxBlue)
+{
+    m_minRed = minRed;
+    m_maxBlue = maxBlue;
+    m_maxGreen = maxGreen;
+}
 
 void ImageProcessor::merge(std::vector<cv::Mat>& src, cv::Mat& dst)
 {
@@ -15,7 +19,7 @@ void ImageProcessor::threshold(cv::Mat& src, cv::Mat& dst)
     for(int x = 0; x < WIDTH;  x++) {
         for(int y = 0; y < HEIGHT; y++) {
             pixel = src.at<cv::Vec3b>(y,x);
-            if( (pixel[2] >= MIN_RED) and (pixel[0] < MAX_BLUE) and (pixel[1] < MAX_GREEN)) {
+            if( (pixel[2] >= m_minRed) and (pixel[0] < m_maxBlue) and (pixel[1] < m_maxGreen)) {
                 dst.at<unsigned char>(y,x) = WHITE;
             } else {
                 dst.at<unsigned char>(y,x) = BLACK;

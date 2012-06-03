@@ -5,13 +5,19 @@
 
 class ImageProcessor
 {
-private:
-    ImageProcessor(){};
 
 public:
-    static void threshold(cv::Mat& src, cv::Mat& dst);
-    static void findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
-    static void merge(std::vector<cv::Mat>& src, cv::Mat& dst);
+    ImageProcessor(){};
+    ImageProcessor(unsigned char minRed, unsigned char maxGreen, unsigned char maxBlue);
+    void threshold(cv::Mat& src, cv::Mat& dst);
+    void findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
+    void merge(std::vector<cv::Mat>& src, cv::Mat& dst);
+
+protected:
+    unsigned char m_minRed;
+    unsigned char m_maxGreen;
+    unsigned char m_maxBlue;
+
 };
 
 #endif // ImageProcessor_H
