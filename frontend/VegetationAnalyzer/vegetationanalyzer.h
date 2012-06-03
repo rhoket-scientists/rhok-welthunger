@@ -29,6 +29,7 @@ private:
 
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem* item);
+	//void on_listWidget_doubleClicked(const QModelIndex &index)
     void on_actionOpen_triggered();
 };
 
