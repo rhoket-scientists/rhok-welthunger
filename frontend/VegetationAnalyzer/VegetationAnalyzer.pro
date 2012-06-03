@@ -5,6 +5,10 @@ TARGET = VegetationAnalyzer
 TEMPLATE = app
 QT += webkit
 SOURCES += main.cpp \
-    vegetationanalyzer.cpp
-HEADERS += vegetationanalyzer.h
+    vegetationanalyzer.cpp \
+    Application.cpp\
+    imageprocessor.cpp
+HEADERS += vegetationanalyzer.h \
+    Application.h\
+    imageprocessor.h
 FORMS += vegetationanalyzer.ui
