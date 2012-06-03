@@ -2,6 +2,7 @@
 #define ImageProcessor_H
 #include <opencv2/imgproc/imgproc.hpp>
 #include <vector>
+#include <QImage>
 
 class ImageProcessor
 {
@@ -12,6 +13,8 @@ public:
     int calculateBorder(cv::Mat& src);
     // void findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
     void merge(std::vector<cv::Mat>& src, cv::Mat& dst);
+
+    QImage IplImage2QImage(const IplImage *iplImage);
 
 protected:
     unsigned char m_minRed;
