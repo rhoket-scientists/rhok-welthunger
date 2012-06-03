@@ -16,7 +16,7 @@ void Application::readImages(int argc, char *argv[])
 {
     for(int i = 1; i < argc; i++) {
         cv::Mat foo = cv::imread(argv[i], 0);
-        m_imageFiles.push_back(foo);
+        m_imageFiles.push_back(cv::resize(foo, foo, cv::Size(4044,3570)));
     }
 }
 
