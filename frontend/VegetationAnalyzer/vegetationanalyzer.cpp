@@ -47,10 +47,6 @@ void VegetationAnalyzer::on_actionOpen_triggered()
     this->sourceFiles = files;
 }
 
-void VegetationAnalyzer::on_listWidget_itemClicked(QListWidgetItem* item)
-{
-    // todo show html
-}
 
 void VegetationAnalyzer::on_listWidget_doubleClicked(const QModelIndex &index)
 {
@@ -58,4 +54,17 @@ void VegetationAnalyzer::on_listWidget_doubleClicked(const QModelIndex &index)
     imageApp->readImages(sourceFiles);
     imageApp->false_color();
     ui->graphicsView->setBackgroundBrush(QImage("/tmp/rgbImage.tif"));
+}
+
+void VegetationAnalyzer::on_listWidget_clicked(QModelIndex index)
+{
+    switch(index){
+    case 0:
+        ui->textBrowser->setText("foo");
+        break;
+    case 1:
+        ui->textBrowser->setText("bar");
+        break;
+    }
+
 }
