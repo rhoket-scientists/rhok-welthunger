@@ -3,13 +3,9 @@
 #include <vector>
 #include "imageprocessor.h"
 #include "globals.h"
-#include <QString>
 
 Application::Application()
 {
-    int minRed = 20;
-    int maxBlue = 100;
-    int maxGreen = 100;
 
     /*
     cv::createTrackbar("Minimum Red", "Main", &minRed, 255);
@@ -17,7 +13,7 @@ Application::Application()
     cv::createTrackbar("Maximum Green", "Main", &maxGreen, 255);
     */
 
-    m_imageProcessor = ImageProcessor(minRed, maxGreen, maxBlue);
+    m_imageProcessor = new ImageProcessor(/*minRed, maxGreen, maxBlue*/);
     //readImages(argc, argv);
 
     m_falseColorImage = cv::Mat (cv::Size(WIDTH, HEIGHT), CV_8UC3);
@@ -108,13 +104,13 @@ void Application::processImages()
     
         // Create one RGB img
     cv::Mat falseColorImage(cv::Size(WIDTH, HEIGHT), CV_8UC3);
-    ImageProcessor::merge(m_currentImageFiles, falseColorImage);
+    m_imageProcessor->merge(m_currentImageFiles, falseColorImage);
 
-    borderPixels = calculateBorder(m_falseColorImage);
+    int borderPixels = m_imageProcessor->calculateBorder(m_falseColorImage);
     std::cout << borderPixels << "\n";
 
     cv::Mat thresholdImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
-    std::cout <<  m_imageProcessor.threshold(m_falseColorImage, thresholdImage) << "\n";
+    std::cout <<  m_imageProcessor->threshold(m_falseColorImage, thresholdImage) << "\n";
 
     std::vector<std::vector<cv::Point> >  contours;
     cv::Mat contoursImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
@@ -130,17 +126,25 @@ void Application::processImages()
     //cv::imwrite("contoursImage.tif", contoursImage);
 }
 
-void Application::readImages(std::list<QString> v)
+void Application::readImages(QList<QString> v)
 {
     m_imageFiles.clear();
 
-    for(int i = 0; i < v.size(); i++) {
-        cv::Mat foo = cv::imread(v[i].toStdString(), 0);
-        cv::resize(foo, foo, cv:Size(4044, 3570));
+    QList<QString>::iterator iter = v.begin();
+    for(; iter < v.end(); iter++) {
+        cv::Mat foo = cv::imread(iter->toStdString(), 0);
+        cv::resize(foo, foo, cv::Size(4044, 3570));
         m_imageFiles.push_back(foo);
     }
 
-    m_imageProcessor.merge(m_imageFiles, m_falseColorImage);
+    /*
+    for(int i = 0; i < v.size(); i++) {
+        cv::Mat foo = cv::imread(v.at(i).toStdString(), 0);
+        cv::resize(foo, foo, cv::Size(4044, 3570));
+        m_imageFiles.push_back(foo);
+    }*/
+
+    // m_imageProcessor->merge(m_imageFiles, m_falseColorImage);
 }
 
 /*int main(int argc, char *argv[]) {

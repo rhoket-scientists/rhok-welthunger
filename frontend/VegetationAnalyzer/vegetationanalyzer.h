@@ -22,7 +22,7 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
-    Application imageApp;
+    Application* imageApp;
     Ui::VegetationAnalyzer *ui;
     void setupSignals();
     QList<QString> sourceFiles;
