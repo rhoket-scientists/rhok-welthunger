@@ -8,7 +8,19 @@ class Application
 
 
     protected:
-        std::vector<cv::Mat> m_mageFiles;
+        std::vector<cv::Mat> m_imageFiles;
+	std::vector<cv::Mat> m_currentImageFiles;
+
         void readImages(int argc, char *argv[]);
         void processImages();
+	void topographic_textures();
+	void atmospheric_penetration();
+	void agricultural_studies();
+	void color_contrast();
+	void atmospheric_particles();
+	void land_water_boundaries();
+	void healthy_vegetaion();
+	void natural_like_rendition();
+	void natural_color();
+	void false_color();
 };
