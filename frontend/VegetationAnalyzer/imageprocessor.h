@@ -13,6 +13,8 @@ public:
     void findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
     void merge(std::vector<cv::Mat>& src, cv::Mat& dst);
 
+    QImage IplImage2QImage(const IplImage *iplImage);
+
 protected:
     unsigned char m_minRed;
     unsigned char m_maxGreen;
