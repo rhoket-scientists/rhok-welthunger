@@ -49,6 +49,13 @@ void VegetationAnalyzer::on_actionOpen_triggered()
 
 void VegetationAnalyzer::on_listWidget_itemClicked(QListWidgetItem* item)
 {
+    // todo show html
+}
+
+void VegetationAnalyzer::on_listWidget_doubleClicked(const QModelIndex &index)
+{
+    assert(sourceFiles.count() > 2);
     imageApp->readImages(sourceFiles);
     imageApp->false_color();
+    // todo show image
 }
