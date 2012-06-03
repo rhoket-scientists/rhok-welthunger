@@ -30,6 +30,19 @@ int ImageProcessor::threshold(cv::Mat& src, cv::Mat& dst)
     }
 }
 
+int ImageProcessor::calculateBorder(cv::Mat& src)
+{
+    cv::Vec3b pixel;
+    int c = 0;
+    for(int x = 0; x < WIDTH;  x++) {
+        for(int y = 0; y < HEIGHT; y++) {
+            pixel = src.at<cv::Vec3b>(y,x);
+            if( (!pixel[2]) and (!pixel[0]) and (!pixel[1])) 
+                c++;
+        }
+    }
+}
+
 void ImageProcessor::findContours(cv::Mat src, std::vector<std::vector<cv::Point> >&  polygons)
 {
     //! Danger: This method modifies the input image
