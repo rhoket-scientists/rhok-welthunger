@@ -17,19 +17,98 @@ Application::Application(int argc, char *argv[])
 
     m_imageProcessor = ImageProcessor(minRed, maxGreen, maxBlue);
     readImages(argc, argv);
+}
 
-    // Create one RGB img
-    m_falseColorImage = cv::Mat (cv::Size(WIDTH, HEIGHT), CV_8UC3);
-    m_imageProcessor.merge(m_imageFiles, m_falseColorImage);
+void Application::false_color(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[1]);
+	m_currentImageFiles.push_back(m_imageFiles[2]);
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	processImages();
+}
 
-    processImages();
+void Application::natural_color(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[0]);
+	m_currentImageFiles.push_back(m_imageFiles[1]);
+	m_currentImageFiles.push_back(m_imageFiles[2]);
+	processImages();
+}
+
+void Application::natural_like_rendition(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[1]);
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	m_currentImageFiles.push_back(m_imageFiles[6]);
+	processImages();
+}
+
+void Application::healthy_vegetaion(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[0]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	processImages();
+}
+
+void Application::land_water_boundaries(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[2]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	processImages();
+}
+
+void Application::atmospheric_particles(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[2]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	m_currentImageFiles.push_back(m_imageFiles[6]);
+	processImages();
+}
+
+void Application::color_contrast(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[2]);
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	processImages();
+}
+
+void Application::agricultural_studies(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[0]);
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	processImages();
+}
+
+void Application::atmospheric_penetration(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[3]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	m_currentImageFiles.push_back(m_imageFiles[6]);
+	processImages();
+}
+
+void Application::topographic_textures(){
+	m_currentImageFiles.clear();
+	m_currentImageFiles.push_back(m_imageFiles[0]);
+	m_currentImageFiles.push_back(m_imageFiles[2]);
+	m_currentImageFiles.push_back(m_imageFiles[4]);
+	processImages();
 }
 
 void Application::processImages()
 {
+    
+        // Create one RGB img
+    cv::Mat falseColorImage(cv::Size(WIDTH, HEIGHT), CV_8UC3);
+    ImageProcessor::merge(m_currentImageFiles, falseColorImage);
+
     borderPixels = calculateBorder(m_falseColorImage);
     std::cout << borderPixels << "\n";
-    
+
     cv::Mat thresholdImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
     std::cout <<  m_imageProcessor.threshold(m_falseColorImage, thresholdImage) << "\n";
 

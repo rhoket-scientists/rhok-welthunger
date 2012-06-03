@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QFile>
+#include "Application.h"
+
 
 namespace Ui {
     class VegetationAnalyzer;
@@ -18,11 +20,13 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
+    Application imageApp;
     Ui::VegetationAnalyzer *ui;
     void setupSignals();
     QList<QString> sourceFiles;
 
 private slots:
+    void on_listWidget_itemClicked(QListWidgetItem* item);
     void on_actionOpen_triggered();
 };
 
