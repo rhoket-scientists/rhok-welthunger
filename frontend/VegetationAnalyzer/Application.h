@@ -5,26 +5,27 @@
 class Application
 {
 public:
-    Application(){};
-    Application(int argc, char *argv[]);
+    Application();
+    //Application(int argc, char *argv[]);
 
 
-protected:
-    std::vector<cv::Mat> m_imageFiles;
-    std::vector<cv::Mat> m_currentImageFiles;
-    ImageProcessor m_imageProcessor;
-    cv::Mat m_falseColorImage;
+    protected:
+        std::vector<cv::Mat> m_imageFiles;
+	std::vector<cv::Mat> m_currentImageFiles;
 
-    void readImages(int argc, char *argv[]);
-    void processImages();
-    void topographic_textures();
-    void atmospheric_penetration();
-    void agricultural_studies();
-    void color_contrast();
-    void atmospheric_particles();
-    void land_water_boundaries();
-    void healthy_vegetaion();
-    void natural_like_rendition();
-    void natural_color();
-    void false_color();
+        void readImages(std::list<std::string> v);
+        void processImages();
+	void topographic_textures();
+	void atmospheric_penetration();
+	void agricultural_studies();
+	void color_contrast();
+	void atmospheric_particles();
+	void land_water_boundaries();
+	void healthy_vegetaion();
+	void natural_like_rendition();
+	void natural_color();
+	void false_color();
+        ImageProcessor m_imageProcessor;
+        cv::Mat m_falseColorImage;
+        void loop();
 };
