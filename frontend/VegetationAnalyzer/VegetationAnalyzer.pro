@@ -12,3 +12,12 @@ HEADERS += vegetationanalyzer.h \
     Application.h\
     imageprocessor.h
 FORMS += vegetationanalyzer.ui
+
+
+# 1st solution
+CONFIG += link_pkgconfig
+PKGCONFIG += opencv
+
+# 2nd solution
+# LIBS += `pkg-config --libs opencv`
+

@@ -3,12 +3,13 @@
 
 class Application
 {
-	public:
-		Application(int argc, char *argv[]);
+public:
+    Application(){};
+    Application(int argc, char *argv[]);
 
 
-    protected:
-        std::vector<cv::Mat> m_mageFiles;
-        void readImages(int argc, char *argv[]);
-        void processImages();
+protected:
+    std::vector<cv::Mat> m_mageFiles;
+    void readImages(int argc, char *argv[]);
+    void processImages();
 };
