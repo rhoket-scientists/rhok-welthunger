@@ -14,7 +14,7 @@ all: $(EXENAME)
 		$(CXX) -MM $(CXXFLAGS) $< > $@
  
 $(EXENAME): $(OBJ_FILES) $(HDR_FILES)
-		$(CXX) -g -o $@ $(OBJ_FILES) $(LDFLAGS)
+		$(CXX) -g -o $@ $(OBJ_FILES) $(LDFLAGS) -Wreturn-type
  
 clean:
 		$(RM) $(OBJ_FILES) $(DEP_FILES)

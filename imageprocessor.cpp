@@ -4,13 +4,12 @@
 //ImageProcessor::ImageProcessor()
 //{}
 
-bool ImageProcessor::merge(std::vector<cv::Mat>& src, cv::Mat& dst)
+void ImageProcessor::merge(std::vector<cv::Mat>& src, cv::Mat& dst)
 {
     cv::merge(src, dst);
-    return true;
 }
 
-bool ImageProcessor::threshold(cv::Mat& src, cv::Mat& dst)
+void ImageProcessor::threshold(cv::Mat& src, cv::Mat& dst)
 {
     cv::Vec3b pixel;
     for(int x = 0; x < WIDTH;  x++) {
@@ -23,11 +22,12 @@ bool ImageProcessor::threshold(cv::Mat& src, cv::Mat& dst)
             }
         }
     }
-    return true;
 }
 
-bool ImageProcessor::findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons)
+void ImageProcessor::findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons)
 {
+    //! Danger: This method modifies the input image
+
     cv::Point offset = cv::Point();
     cv::findContours(src, polygons,
                      CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE,
