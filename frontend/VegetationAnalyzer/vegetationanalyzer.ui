@@ -21,12 +21,22 @@
        <widget class="QListWidget" name="listWidget">
         <item>
          <property name="text">
-          <string>false color</string>
+          <string>false color (4,3,2)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>natural color</string>
+          <string>natural color (3,2,1)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>healthy vegetation (4,5,1)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>land water boundaries (4,5,3)</string>
          </property>
         </item>
        </widget>
@@ -47,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAnalyzer">
