@@ -46,3 +46,8 @@ void VegetationAnalyzer::on_actionOpen_triggered()
                             "Images (*.tif)");
     this->sourceFiles = files;
 }
+
+void VegetationAnalyzer::on_listWidget_itemClicked(QListWidgetItem* item)
+{
+
+}
