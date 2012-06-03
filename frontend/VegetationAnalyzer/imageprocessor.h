@@ -9,8 +9,8 @@ private:
     ImageProcessor(){};
 
 public:
-    static void threshold(cv::Mat& src, cv::Mat& dst);
-    static void findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
+    static int threshold(cv::Mat& src, cv::Mat& dst);
+    static void findContours(cv::Mat src, std::vector<std::vector<cv::Point> >&  polygons);
     static void merge(std::vector<cv::Mat>& src, cv::Mat& dst);
 };
 

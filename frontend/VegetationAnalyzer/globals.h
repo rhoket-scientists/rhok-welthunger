@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-const unsigned char MIN_RED = 0;
+const unsigned char MIN_RED = 50;
 const unsigned char MAX_BLUE = 100;
 const unsigned char MAX_GREEN = 100;
 
