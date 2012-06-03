@@ -53,7 +53,7 @@ void VegetationAnalyzer::on_listWidget_doubleClicked(const QModelIndex &index)
     assert(sourceFiles.count() > 2);
     imageApp->readImages(sourceFiles);
     imageApp->false_color();
-    // todo show image
+    ui->graphicsView->setBackgroundBrush(QImage("/tmp/rgbImage.tif"));
 }
 
 void VegetationAnalyzer::on_listWidget_clicked(const QModelIndex &index)

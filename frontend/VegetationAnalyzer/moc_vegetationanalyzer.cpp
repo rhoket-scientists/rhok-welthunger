@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'vegetationanalyzer.h'
 **
-** Created: Sun Jun 3 13:21:48 2012
+** Created: Sun Jun 3 13:40:41 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

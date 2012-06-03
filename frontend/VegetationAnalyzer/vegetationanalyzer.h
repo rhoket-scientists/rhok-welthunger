@@ -28,8 +28,14 @@ private:
     QList<QString> sourceFiles;
 
 private slots:
+<<<<<<< HEAD
     void on_listWidget_doubleClicked(const QModelIndex &);
     void on_listWidget_clicked(const QModelIndex &);
+=======
+    void on_listWidget_clicked(QModelIndex index);
+    void on_listWidget_itemClicked(QListWidgetItem* item);
+	//void on_listWidget_doubleClicked(const QModelIndex &index)
+>>>>>>> 4092b4ae4824c858cf0ded97972d8790fac32be7
     void on_actionOpen_triggered();
 };
 
