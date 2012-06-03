@@ -5,8 +5,8 @@
 class Application
 {
 public:
-    Application(){};
-    Application(int argc, char *argv[]);
+    Application();
+    //Application(int argc, char *argv[]);
 
 
     protected:
@@ -14,7 +14,7 @@ public:
         ImageProcessor m_imageProcessor;
         cv::Mat m_falseColorImage;
 
-        void readImages(int argc, char *argv[]);
+        void readImages(std::list<std::string> v);
         void processImages();
         void loop();
 };

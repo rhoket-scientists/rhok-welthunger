@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QFile>
 #include "Application.h"
+#include <QListWidgetItem>
+#include <list>
 
 
 namespace Ui {

@@ -4,8 +4,7 @@
 #include <QFileDialog>
 
 
-VegetationAnalyzer::VegetationAnalyzer(QWidget *parent) :
-    QMainWindow(parent),
+VegetationAnalyzer::VegetationAnalyzer(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::VegetationAnalyzer)
 {
     ui->setupUi(this);
@@ -49,5 +48,5 @@ void VegetationAnalyzer::on_actionOpen_triggered()
 
 void VegetationAnalyzer::on_listWidget_itemClicked(QListWidgetItem* item)
 {
-
+    imageApp.readImages(sourceFiles.toStdList());
 }

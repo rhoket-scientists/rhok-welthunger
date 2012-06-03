@@ -3,26 +3,29 @@
 #include <vector>
 #include "imageprocessor.h"
 #include "globals.h"
+#include <QString>
 
-Application::Application(int argc, char *argv[])
+Application::Application()
 {
-    cv::namedWindow("Main");
     int minRed = 20;
     int maxBlue = 100;
     int maxGreen = 100;
 
+    /*
     cv::createTrackbar("Minimum Red", "Main", &minRed, 255);
     cv::createTrackbar("Maximum Blue", "Main", &maxBlue, 255);
     cv::createTrackbar("Maximum Green", "Main", &maxGreen, 255);
+    */
 
     m_imageProcessor = ImageProcessor(minRed, maxGreen, maxBlue);
-    readImages(argc, argv);
+
+    // readImages(argc, argv);
 
     // Create one RGB img
     m_falseColorImage = cv::Mat (cv::Size(WIDTH, HEIGHT), CV_8UC3);
-    m_imageProcessor.merge(m_imageFiles, m_falseColorImage);
 
-    processImages();
+    //
+    //processImages();
 }
 
 void Application::processImages()
@@ -44,15 +47,19 @@ void Application::processImages()
     cv::imwrite("contoursImage.tif", contoursImage);
 }
 
-void Application::readImages(int argc, char *argv[])
+void Application::readImages(std::list<QString> v)
 {
-    for(int i = 1; i < argc; i++) {
-        cv::Mat foo = cv::imread(argv[i], 0);
+    m_imageFiles.clear();
+
+    for(int i = 0; i < v.size(); i++) {
+        cv::Mat foo = cv::imread(v[i].toStdString(), 0);
         m_imageFiles.push_back(foo);
     }
+
+    m_imageProcessor.merge(m_imageFiles, m_falseColorImage);
 }
 
-int main(int argc, char *argv[]) {
+/*int main(int argc, char *argv[]) {
     Application foo (argc, argv);
     return 0;
-}
+}*/
