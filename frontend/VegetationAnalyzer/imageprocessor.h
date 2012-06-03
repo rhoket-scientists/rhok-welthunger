@@ -7,9 +7,8 @@ class ImageProcessor
 {
 
 public:
-    ImageProcessor(){};
     ImageProcessor(unsigned char minRed, unsigned char maxGreen, unsigned char maxBlue);
-    void threshold(cv::Mat& src, cv::Mat& dst);
+    int threshold(cv::Mat& src, cv::Mat& dst);
     void findContours(cv::Mat& src, std::vector<std::vector<cv::Point> >&  polygons);
     void merge(std::vector<cv::Mat>& src, cv::Mat& dst);
 
