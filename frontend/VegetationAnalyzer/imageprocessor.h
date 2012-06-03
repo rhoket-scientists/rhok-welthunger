@@ -2,6 +2,7 @@
 #define ImageProcessor_H
 #include <opencv2/imgproc/imgproc.hpp>
 #include <vector>
+#include <QImage>
 
 class ImageProcessor
 {

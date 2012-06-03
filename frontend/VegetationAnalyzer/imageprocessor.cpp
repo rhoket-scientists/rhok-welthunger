@@ -1,5 +1,6 @@
 #include "imageprocessor.h"
 #include "globals.h"
+#include <qdebug.h>
 
 ImageProcessor::ImageProcessor(/*unsigned char minRed, unsigned char maxGreen, unsigned char maxBlue*/)
 {
@@ -41,17 +42,6 @@ int ImageProcessor::calculateBorder(cv::Mat& src)
                 c++;
         }
     }
-}
-
-/*
-void ImageProcessor::findContours(cv::Mat src, std::vector<std::vector<cv::Point> >&  polygons)
-{
-    //! Danger: This method modifies the input image
-
-    cv::Point offset = cv::Point();
-    cv::findContours(src, polygons,
-            CV_RETR_TREE, CV_CHAIN_APPROX_NONE,
-                     offset);
 }
 
 
