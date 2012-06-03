@@ -1,5 +1,6 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include "imageprocessor.h"
 
 class Application
 {
@@ -23,4 +24,7 @@ class Application
 	void natural_like_rendition();
 	void natural_color();
 	void false_color();
+        ImageProcessor m_imageProcessor;
+        cv::Mat m_falseColorImage;
+        void loop();
 };

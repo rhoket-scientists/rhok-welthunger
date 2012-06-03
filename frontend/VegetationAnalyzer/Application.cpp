@@ -7,16 +7,16 @@
 Application::Application(int argc, char *argv[])
 {
     cv::namedWindow("Main");
-    readImages(argc, argv);
-    processImages();
-}
+    int minRed = 20;
+    int maxBlue = 100;
+    int maxGreen = 100;
 
-void Application::readImages(int argc, char *argv[])
-{
-    for(int i = 1; i < argc; i++) {
-        cv::Mat foo = cv::imread(argv[i], 0);
-        m_imageFiles.push_back(foo);
-    }
+    cv::createTrackbar("Minimum Red", "Main", &minRed, 255);
+    cv::createTrackbar("Maximum Blue", "Main", &maxBlue, 255);
+    cv::createTrackbar("Maximum Green", "Main", &maxGreen, 255);
+
+    m_imageProcessor = ImageProcessor(minRed, maxGreen, maxBlue);
+    readImages(argc, argv);
 }
 
 void Application::false_color(){
@@ -101,25 +101,34 @@ void Application::topographic_textures(){
 
 void Application::processImages()
 {
+        // Create one RGB img
     cv::Mat falseColorImage(cv::Size(WIDTH, HEIGHT), CV_8UC3);
     ImageProcessor::merge(m_currentImageFiles, falseColorImage);
 
     cv::Mat thresholdImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
-    std::cout << ImageProcessor::threshold(falseColorImage, thresholdImage) << "\n";
-/*
+    m_imageProcessor.threshold(m_falseColorImage, thresholdImage);
+
     std::vector<std::vector<cv::Point> >  contours;
-    cv::Mat contoursImage(cv::Size(WIDTH, HEIGHT), CV_8UC3);
-    ImageProcessor::findContours(thresholdImage, contours);
-    std::cout << contours.size() << "\n";
-//    contoursImage = falseColorImage.clone();
-    contours.erase(contours.begin());
-    cv::drawContours(contoursImage, contours, -1, cv::Scalar(0,255,0), -1);
-*/
-    cv::imwrite("falseColorImage.tif", falseColorImage);
+    cv::Mat contoursImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
+    cv::Mat thresholdCopy(cv::Size(WIDTH, HEIGHT), CV_8UC1);
+    contoursImage.copyTo(thresholdCopy);
+    m_imageProcessor.findContours(thresholdCopy, contours);
+
+    contoursImage = m_falseColorImage.clone();
+    cv::drawContours(contoursImage, contours, -1, cv::Scalar(0, 255, 0));
+
+    cv::imwrite("falseColorImage.tif", m_falseColorImage);
     cv::imwrite("thresholdImage.tif", thresholdImage);
-  //  cv::imwrite("contoursImage.tif", contoursImage);
+    cv::imwrite("contoursImage.tif", contoursImage);
 }
 
+void Application::readImages(int argc, char *argv[])
+{
+    for(int i = 1; i < argc; i++) {
+        cv::Mat foo = cv::imread(argv[i], 0);
+        m_imageFiles.push_back(foo);
+    }
+}
 
 int main(int argc, char *argv[]) {
     Application foo (argc, argv);
