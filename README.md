@@ -36,3 +36,8 @@ http://landsat.usgs.gov/documents/June_2010_Vierling%20-%20Idaho%20Remote%20Sens
 De facto muss man sich da reinarbeiten. Daher werden ja auch Spezialisten normalerweise fürstlich bezahlt.
 Sie wissen bestimmt besser, ob sich aus der Sache fuer Ihre Gruppe etwas machen lässt. 
 
+________________________________
+install opencv from ppa
+$ sudo add-apt-repository ppa:gijzelaar/opencv2
+$ sudo apt-get update
+$ sudo apt-get install opencv

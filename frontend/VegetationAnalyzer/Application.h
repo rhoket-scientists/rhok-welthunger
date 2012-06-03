@@ -4,8 +4,9 @@
 
 class Application
 {
-	public:
-		Application(int argc, char *argv[]);
+public:
+    Application(){};
+    Application(int argc, char *argv[]);
 
 
     protected:
