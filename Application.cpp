@@ -6,16 +6,24 @@
 
 Application::Application(int argc, char *argv[])
 {
-    //cv::namedWindow("Main");
+    cv::namedWindow("Main");
 
-    std::vector<cv::Mat> imageFiles;
+    readImages(argv);
+    processImages();
+}
+
+void Application::readImages(int argc, char *argv[])
+{
     for(int i = 1; i < argc; i++) {
         cv::Mat foo = cv::imread(argv[i], 0);
-        imageFiles.push_back(foo);
+        m_imageFiles.push_back(foo);
     }
+}
 
+void Application::processImages()
+{
     cv::Mat falseColorImage(cv::Size(WIDTH, HEIGHT), CV_8UC3);
-    ImageProcessor::merge(imageFiles, falseColorImage);
+    ImageProcessor::merge(m_imageFiles, falseColorImage);
 
     cv::Mat thresholdImage(cv::Size(WIDTH, HEIGHT), CV_8UC1);
     std::cout << ImageProcessor::threshold(falseColorImage, thresholdImage) << "\n";
