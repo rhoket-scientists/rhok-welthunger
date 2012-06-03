@@ -56,15 +56,14 @@ void VegetationAnalyzer::on_listWidget_doubleClicked(const QModelIndex &index)
     // todo show image
 }
 
-void VegetationAnalyzer::on_listWidget_clicked(QModelIndex index)
+void VegetationAnalyzer::on_listWidget_clicked(const QModelIndex &index)
 {
-    switch(index){
-    case 0:
         ui->textBrowser->setText("foo");
-        break;
-    case 1:
-        ui->textBrowser->setText("bar");
-        break;
-    }
 
+        if (index.row() == 0) {
+            ui->textBrowser->setText("The \"natural color\" band combination.");
+        }
+        if (index.row() == 1) {
+            ui->textBrowser->setText("\"Thermal image\" band combination");
+        }
 }
