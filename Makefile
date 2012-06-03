@@ -1,4 +1,5 @@
-CXXFLAGS+=$(shell pkg-config opencv --cflags) -Wno-attributes
+CXXFLAGS+=$(shell pkg-config opencv --cflags) -Wall
+
 LDFLAGS+=$(shell pkg-config opencv --libs)
  
 SRC_FILES=$(shell find . -iname "*.cpp")
@@ -14,8 +15,8 @@ all: $(EXENAME)
 		$(CXX) -MM $(CXXFLAGS) $< > $@
  
 $(EXENAME): $(OBJ_FILES) $(HDR_FILES)
-		$(CXX) -g -o $@ $(OBJ_FILES) $(LDFLAGS) -Wreturn-type
- 
+		$(CXX) -g -o $@ $(OBJ_FILES) $(LDFLAGS)
+
 clean:
 		$(RM) $(OBJ_FILES) $(DEP_FILES)
 		$(RM) $(EXENAME)
