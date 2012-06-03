@@ -1,19 +1,25 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "imageprocessor.h"
+#include <QString>
+#include <QList>
+#include <list>
+#include "globals.h"
 
 class Application
 {
 public:
     Application();
-    //Application(int argc, char *argv[]);
-
 
     protected:
         std::vector<cv::Mat> m_imageFiles;
 	std::vector<cv::Mat> m_currentImageFiles;
+        ImageProcessor* m_imageProcessor;
+        cv::Mat m_falseColorImage;
+        void loop();
 
-        void readImages(std::list<std::string> v);
+    public:
+        void readImages(QList<QString> v);
         void processImages();
 	void topographic_textures();
 	void atmospheric_penetration();
@@ -25,7 +31,4 @@ public:
 	void natural_like_rendition();
 	void natural_color();
 	void false_color();
-        ImageProcessor m_imageProcessor;
-        cv::Mat m_falseColorImage;
-        void loop();
 };

@@ -2,10 +2,12 @@
 #define GLOBALS_H
 
 //! implicit casts to unsigned char because of cv::createTrackbar
-/*int MIN_RED = 0;
-int MAX_BLUE = 100;
-int MAX_GREEN = 100;
-*/
+
+
+#define MIN_RED = 20;
+#define MAX_BLUE = 100;
+#define MAX_GREEN = 100;
+
 const unsigned char WHITE = 255;
 const unsigned char BLACK = 0;
 

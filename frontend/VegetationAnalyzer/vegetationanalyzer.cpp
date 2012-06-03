@@ -9,6 +9,7 @@ VegetationAnalyzer::VegetationAnalyzer(QWidget *parent) : QMainWindow(parent),
 {
     ui->setupUi(this);
 
+    imageApp = new Application();
 
     setupSignals();
 }
@@ -48,5 +49,6 @@ void VegetationAnalyzer::on_actionOpen_triggered()
 
 void VegetationAnalyzer::on_listWidget_itemClicked(QListWidgetItem* item)
 {
-    imageApp.readImages(sourceFiles.toStdList());
+    imageApp->readImages(sourceFiles);
+    imageApp->false_color();
 }
