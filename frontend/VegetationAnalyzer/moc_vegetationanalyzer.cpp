@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'vegetationanalyzer.h'
 **
-** Created: Sun Jun 3 13:40:41 2012
+** Created: Sun Jun 3 14:11:30 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_VegetationAnalyzer[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -31,15 +31,17 @@ static const uint qt_meta_data_VegetationAnalyzer[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      25,   20,   19,   19, 0x08,
-      69,   19,   19,   19, 0x08,
+      20,   19,   19,   19, 0x08,
+      61,   19,   19,   19, 0x08,
+      96,   19,   19,   19, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_VegetationAnalyzer[] = {
-    "VegetationAnalyzer\0\0item\0"
-    "on_listWidget_itemClicked(QListWidgetItem*)\0"
+    "VegetationAnalyzer\0\0"
+    "on_listWidget_doubleClicked(QModelIndex)\0"
+    "on_listWidget_clicked(QModelIndex)\0"
     "on_actionOpen_triggered()\0"
 };
 
@@ -49,8 +51,9 @@ void VegetationAnalyzer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         Q_ASSERT(staticMetaObject.cast(_o));
         VegetationAnalyzer *_t = static_cast<VegetationAnalyzer *>(_o);
         switch (_id) {
-        case 0: _t->on_listWidget_itemClicked((*reinterpret_cast< QListWidgetItem*(*)>(_a[1]))); break;
-        case 1: _t->on_actionOpen_triggered(); break;
+        case 0: _t->on_listWidget_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 1: _t->on_listWidget_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 2: _t->on_actionOpen_triggered(); break;
         default: ;
         }
     }
@@ -88,9 +91,9 @@ int VegetationAnalyzer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
