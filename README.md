@@ -52,3 +52,5 @@ To check if OpenCV is running just compile the hello world:
 Any help is eally appreciated. If you have an idea, great. Just start coding and send us a pull request. 
 
 As a developer, you should install the requirements for developers. Simple run `make req_developer`. If you want to regenerate the UI files after editing the a Qt ui file, run `make generate_pyqt`. This will generate `.py` files for all ui files. 
+
+If you want to have isolated Python environments, we recommend to use [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/).

@@ -6,7 +6,7 @@ PYRCC = pyrcc4
 PYTHON = python
 PIP = pip
 
-all: run_tests run
+all: test_unit run
 
 UI 	:= $(shell cd ${GUI}; ls *.ui)
 
@@ -28,7 +28,7 @@ run: gen_ui
 run_no_gui:
 	${PYTHON} main.py -c
 
-run_tests:
+test_unit:
 	${PYTHON} -m unittest discover test "*.py" -v
 
 req_developer:
