@@ -4,15 +4,26 @@ This software analyzes a given set of landsat satellite images to show how the l
  
 It should help Welthungerhilfe to have strong arguments for disputing with the government of Sierra Leone about shifting land usage patterns.
 
-T	he project got startet at the 3. Random Hacks of Kindness in Berlin from 2012-06-02 to 2012-06-03. We plan to hack on it further in july.
+The project got startet at the 3. Random Hacks of Kindness in Berlin from 2012-06-02 to 2012-06-03. We are currently rebuilding and extending the application in python. 
 
 * The problem page: http://www.rhok.org/problems/shifting-patterns-land-use-and-availability-land-pujehun-district-southern-sierra-leone
 
 * The solution page: http://www.rhok.org/solutions/vegetation-analyzer
 
 ##Dependencies
-* OpenCV for image processing
-* QT for the GUI
+* `OpenCV` for image processing
+* `Qt` for the GUI
+* `Python` for the code
+	* `pyqt` as a binding for Qt
+	* `oktest` for the unit tests (only for developers)
+
+To install the python dependencies, simple run `make req_stable`. 
+
+##Run the application
+To run the application, simply execute `make run`.
+
+###get help
+Run `python main.py -h` to see all avaliable command line options.
 
 ##Get Satellite images
 
@@ -29,22 +40,15 @@ To check if OpenCV is running just compile the hello world:
 
 `g++ $(pkg-config --cflags opencv) hello_world.cpp -o hello-world $(pkg-config --libs opencv)`
 
-Include the images into an img/ folder and run the program:
+###install opencv from ppa
+    
+    $ sudo add-apt-repository ppa:gijzelaar/opencv2
+    $ sudo apt-get update
+    $ sudo apt-get install opencv
+    
+    
+#For developers
 
-`make && ./app img/img1 img/img2 img/img3`
+Any help is eally appreciated. If you have an idea, great. Just start coding and send us a pull request. 
 
-=======
-Compile the hello world by hand:
-`g++ -I/usr/include/opencv hello_world.cpp -lopencv_core -lopencv_imgproc -lopencv_highgui`
-
-
-To run under Linux:
-export LD_LIBRARY_PATH=/usr/local/lib
-
-
-
-________________________________
-install opencv from ppa
-$ sudo add-apt-repository ppa:gijzelaar/opencv2
-$ sudo apt-get update
-$ sudo apt-get install opencv
+As a developer, you should install the requirements for developers. Simple run `make req_developer`. If you want to regenerate the UI files after editing the a Qt ui file, run `make generate_pyqt`. This will generate `.py` files for all ui files. 

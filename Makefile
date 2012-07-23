@@ -6,11 +6,13 @@ PYRCC = pyrcc4
 PYTHON = python
 PIP = pip
 
-all: run_tests gen_ui resources_rc.py
+all: run_tests run
 
 UI 	:= $(shell cd ${GUI}; ls *.ui)
 
 UIPY = $(UI:%.ui=%.py)
+
+generate_pyqt: gen_ui resources_rc.py
 
 gen_ui: ${UIPY}
 
