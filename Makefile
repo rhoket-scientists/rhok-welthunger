@@ -17,6 +17,12 @@ ${UIPY}:  %.py : ${GUI}/%.ui
 resources_rc.py: ${GUI}/resources.qrc
 	${PYRCC} -o $@ $<
 
+make req_developer:
+	pip install -r devel-req.txt
+
+make req_stable:
+	pip install -r stable-req.txt
+
 clean:
 	rm -f ${GEN}/*.py
 	rm -f ${GEN}/*.pyc
