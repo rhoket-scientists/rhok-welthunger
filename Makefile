@@ -20,6 +20,12 @@ ${UIPY}:  %.py : ${GUI}/%.ui
 resources_rc.py: ${GUI}/resources.qrc
 	${PYRCC} -o $@ $<
 
+run: gen_ui
+	${PYTHON} main.py
+
+run_no_gui:
+	${PYTHON} main.py -c
+
 run_tests:
 	${PYTHON} -m unittest discover test "*.py" -v
 
@@ -30,6 +36,7 @@ req_stable:
 	${PIP} install -r stable-req.txt
 
 clean:
-	rm -f ${GEN}/*.py
-	rm -f ${GEN}/*.pyc
-	touch ${GEN}/__init__.py
+	@rm -f ${GEN}/*.py
+	@rm -f ${GEN}/*.pyc
+	@find . -name "*.pyc" -exec rm -rf {} \;
+	@touch ${GEN}/__init__.py

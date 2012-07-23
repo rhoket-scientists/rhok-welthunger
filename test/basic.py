@@ -4,6 +4,8 @@
 import unittest
 from oktest import test, ok, NG
 
+# http://www.kuwata-lab.com/oktest/oktest-py_users-guide.html
+
 class SampleTest(unittest.TestCase):
 
    @test("1 + 1 should be 2")
