@@ -1,9 +1,12 @@
 GUI = gui
 GEN = gui/gen
+TEST = 
 PYUIC = pyuic
 PYRCC = pyrcc4
+PYTHON = python
+PIP = pip
 
-all: gen_ui resources_rc.py
+all: run_tests gen_ui resources_rc.py
 
 UI 	:= $(shell cd ${GUI}; ls *.ui)
 
@@ -17,11 +20,14 @@ ${UIPY}:  %.py : ${GUI}/%.ui
 resources_rc.py: ${GUI}/resources.qrc
 	${PYRCC} -o $@ $<
 
-make req_developer:
-	pip install -r devel-req.txt
+run_tests:
+	${PYTHON} -m unittest discover test "*.py" -v
 
-make req_stable:
-	pip install -r stable-req.txt
+req_developer:
+	${PIP} install -r devel-req.txt
+
+req_stable:
+	${PIP} install -r stable-req.txt
 
 clean:
 	rm -f ${GEN}/*.py
