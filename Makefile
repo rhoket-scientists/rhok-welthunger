@@ -1,7 +1,7 @@
 GUI = gui
 GEN = gui/gen
 TEST = 
-PYUIC = pyuic
+PYUIC = pyuic4
 PYRCC = pyrcc4
 PYTHON = python
 PIP = pip
