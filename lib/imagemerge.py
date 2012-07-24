@@ -8,6 +8,7 @@ def load_images(images):
 
 
 def merge_images(images):
+	images = load_images(images)
 	for i in images:
 		assert i.depth == cv.IPL_DEPTH_8U
 	images = resize(images)
@@ -30,4 +31,4 @@ def min_size(images):
 	return min(*[cv.GetSize(img) for img in images])
 
 if __name__ == '__main__':
-	merge_images(load_images(sys.argv[1:]))
+	merge_images(sys.argv[1:])

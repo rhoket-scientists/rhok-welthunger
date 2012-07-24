@@ -4,6 +4,7 @@
 import sys
 import logging
 import argparse
+from lib import imagemerge
 
 def main():
 
@@ -15,7 +16,7 @@ def main():
 	parser.add_argument('-o','--output', nargs=1, type=argparse.FileType('w'),
 				   default=sys.stdout, help='write results to FILE (default is stdout)')
 	parser.add_argument('-i','--input', nargs=2, type=argparse.FileType('rb'), default=None, metavar=('image1.png'),
-				   help="input images")
+				   help="input images", dest='images')
 	parser.add_argument('--version', action='version', version='%(prog)s 0.0.1')
 
 	args = parser.parse_args()
@@ -42,6 +43,9 @@ def main():
 
 	if not args.nogui:
 		show_gui(args)
+	
+	if args.images:
+		imagemerge.merge_images(args.images)
 
 def show_gui(args):
 	from PyQt4 import QtCore, QtGui

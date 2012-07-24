@@ -36,16 +36,16 @@ class ImageMergeTest(unittest.TestCase):
 
 
 	@test("should merge to 3 channel image")
-	def _(self, loadedImages):
+	def _(self, loadedImages, images):
 		for img in loadedImages:
 			if not img == None:
 				ok (img.nChannels) == 1
-		ok (imagemerge.merge_images(loadedImages).nChannels) == 3
+		ok (imagemerge.merge_images(images).nChannels) == 3
 
 
 	@test('should merge into minimum x size')
-	def _(self, loadedImages):
-		ok (cv.GetSize(imagemerge.merge_images(loadedImages))) == (1,1)
+	def _(self, images):
+		ok (cv.GetSize(imagemerge.merge_images(images))) == (1,1)
 
 if __name__ == '__main__':
 	unittest.main()

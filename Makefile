@@ -6,7 +6,7 @@ PYRCC = pyrcc4
 PYTHON = python
 PIP = pip
 
-all: test_unit run
+all: test_unit run_no_gui
 
 UI 	:= $(shell cd ${GUI}; ls *.ui)
 

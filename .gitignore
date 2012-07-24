@@ -27,3 +27,6 @@ app
 
 # Python
 *.pyc
+
+# temp files
+*~
