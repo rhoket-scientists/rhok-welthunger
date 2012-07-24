@@ -2,7 +2,7 @@
 
 import cv
 import unittest
-from oktest import test, ok, NG
+from oktest import test, ok, NG, skip
 from lib import imagemerge
 
 class ImageMergeTest(unittest.TestCase):
@@ -13,17 +13,26 @@ class ImageMergeTest(unittest.TestCase):
 				'test/fixtures/img3x4.tiff']
 
 	def provide_loadedImages(self):
-		return [cv.LoadImage(img) for img in self.provide_images()]
-
-
-	def provide_matrices(self):
-		return [cv.CreateMat(2,2, cv.CV_8UC1)]
+		return [cv.LoadImage(img, 0) for img in self.provide_images()]
 
 
 	@test("should load 3 cv images")
 	def _(self, images):
 		ok (len(imagemerge.load_images(images))) == 3
 
+
+	@test('should compute the minimum size of n images')
+	def _(self, loadedImages):
+		ok (imagemerge.min_size(loadedImages)) == (1,1)
+		ok (imagemerge.min_size(loadedImages)[0]) == 1
+
+
+	@test("should resize images to the smallest")
+	def _(self, loadedImages):
+		images = imagemerge.resize(loadedImages)
+		ok (len(images)) == len(loadedImages)
+		for img in images:
+			ok (cv.GetSize(img)) == (1, 1)
 
 if __name__ == '__main__':
 	unittest.main()

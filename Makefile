@@ -1,6 +1,6 @@
 GUI = gui
 GEN = gui/gen
-TEST = 
+TEST =
 PYUIC = pyuic
 PYRCC = pyrcc4
 PYTHON = python
@@ -29,7 +29,7 @@ run_no_gui:
 	${PYTHON} main.py -c
 
 test_unit:
-	${PYTHON} -m unittest discover test "*.py" -v
+	${PYTHON} -m unittest discover test "*.py"
 
 req_developer:
 	${PIP} install -r devel-req.txt
