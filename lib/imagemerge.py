@@ -6,11 +6,14 @@ import sys
 def load_images(images):
 	return [cv.LoadImage(img, 0) for img in images]
 
+
 def merge_images(images):
 	for i in images:
 		assert i.depth == cv.IPL_DEPTH_8U
-	mergedImage = cv.CreateImage(minSize, images[0].depth, 3)
-	cv.Merge(None, images[0], images[1], images[2], mergedImage)
+	images = resize(images)
+	mergedImage = cv.CreateImage(min_size(images), cv.IPL_DEPTH_8U, 3)
+	cv.Merge(images[0], images[1], images[2], None, mergedImage)
+	return mergedImage
 
 
 def resize(images):
