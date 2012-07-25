@@ -4,6 +4,8 @@
 import sys
 import logging
 import argparse
+import threading
+
 from lib import imagemerge
 
 
@@ -15,7 +17,8 @@ def dispatch(args):
 		show_gui(args)
 
 	if args.images:
-		imagemerge.merge_images(args.images)
+		threading.Thread(target=imagemerge.merge_images,
+			args=((args.images[0], args.images[1], args.images[2])))
 
 
 def main():
