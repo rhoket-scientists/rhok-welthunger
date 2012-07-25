@@ -43,7 +43,7 @@ If you want to have isolated Python environments, we recommend to use [virtualen
 
 
 ## Setup on Linux (tested on Ubuntu)
-1. `sudo apt-get install pip-python` for Python dependencies
+1. `sudo apt-get install python-pip` for Python dependencies
 1. PyQT for the GUI
 1. OpenCV for image processing
 
