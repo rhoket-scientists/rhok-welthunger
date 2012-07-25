@@ -32,7 +32,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 	def show_merged_image(self, image):
-		self.mergedImage.setPixmap(QPixmap(image))
-		self.mergedImage.pixmap().scaled(
-				QSize(self.mergedImage.size()),
+		pix = QPixmap(image).scaled(
+				self.mergedImage.size(),
 				Qt.KeepAspectRatio, Qt.FastTransformation)
+		self.mergedImage.setPixmap(pix)
+
