@@ -30,5 +30,9 @@ def resize(images):
 def min_size(images):
 	return min(*[cv.GetSize(img) for img in images])
 
+
+def merge_to_file(img0, img1, img2, filePath):
+	cv.SaveImage(filePath, merge_images(img0, img1, img2))
+
 if __name__ == '__main__':
 	merge_images(*sys.argv[1:])

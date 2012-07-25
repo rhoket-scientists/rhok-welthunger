@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import cv
 import unittest
 from oktest import test, ok, NG, skip
@@ -12,8 +13,13 @@ class ImageMergeTest(unittest.TestCase):
 				'test/fixtures/img1x1.tiff',\
 				'test/fixtures/img3x4.tiff']
 
+
 	def provide_loadedImages(self):
 		return [cv.LoadImage(img, 0) for img in self.provide_images()]
+
+
+	def provide_filePath(self):
+		return 'test/fixtures/mergedImage.tiff'
 
 
 	@test("should load 3 cv images")
@@ -46,6 +52,14 @@ class ImageMergeTest(unittest.TestCase):
 	@test('should merge into minimum horizontal size')
 	def _(self, images):
 		ok (cv.GetSize(imagemerge.merge_images(*images))) == (1,1)
+
+
+	@test('should merge 3 images into one file on disk')
+	def _(self, images, filePath):
+		os.system('rm ' + filePath)
+		imagemerge.merge_to_file(images[0], images[1], images[2], filePath)
+		ok (open(filePath)).is_a(file)
+
 
 if __name__ == '__main__':
 	unittest.main()
