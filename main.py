@@ -17,8 +17,9 @@ def dispatch(args):
 		show_gui(args)
 
 	if args.images:
-		threading.Thread(target=imagemerge.merge_images,
-			args=((args.images[0], args.images[1], args.images[2])))
+		threading.Thread(target=imagemerge.merge_to_file,
+			args=((args.images[0], args.images[1], args.images[2],
+				'/tmp/foo.tiff')))
 
 
 def main():
