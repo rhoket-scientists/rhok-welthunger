@@ -43,9 +43,11 @@ If you want to have isolated Python environments, we recommend to use [virtualen
 
 
 ## Setup on Linux (tested on Ubuntu)
-1. `sudo apt-get install pip-python` for Python dependencies
+1. `sudo apt-get install pip-python` for Python dependency management
 1. PyQT for the GUI
 1. OpenCV for image processing
+1. In your .bashrc: `export $ PYTHONPATH=/usr/local/lib/python2.6/site-package`
+because Python and opencv only work with Python 2.6 on Ubuntu
 
 
 ##Setup on MacOS X
