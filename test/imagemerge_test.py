@@ -3,7 +3,7 @@
 import os
 import cv
 import unittest
-from oktest import test, ok, NG, skip
+from oktest import *
 from lib import imagemerge
 
 class ImageMergeTest(unittest.TestCase):
@@ -20,6 +20,10 @@ class ImageMergeTest(unittest.TestCase):
 
 	def provide_filePath(self):
 		return 'test/fixtures/mergedImage.tiff'
+
+
+	def release_filePath(self, filePath):
+		os.system('rm ' + filePath)
 
 
 	@test("should load 3 cv images")
@@ -56,7 +60,6 @@ class ImageMergeTest(unittest.TestCase):
 
 	@test('should merge 3 images into one file on disk')
 	def _(self, images, filePath):
-		os.system('rm ' + filePath)
 		imagemerge.merge_to_file(images[0], images[1], images[2], filePath)
 		ok (open(filePath)).is_a(file)
 
