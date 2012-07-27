@@ -10,9 +10,9 @@ UI 	:= $(shell cd ${GUI}; ls *.ui)
 
 UIPY = $(UI:%.ui=%.py)
 
-generate_pyqt: gen_ui resources_rc.py
+generate_pyqt: generate_ui resources_rc.py
 
-gen_ui: ${UIPY}
+generate_ui: ${UIPY}
 
 ${UIPY}:  %.py : ${GUI}/%.ui
 	${PYUIC} -o ${GEN}/$@ $<
@@ -20,16 +20,16 @@ ${UIPY}:  %.py : ${GUI}/%.ui
 resources_rc.py: ${GUI}/resources.qrc
 	${PYRCC} -o $@ $<
 
-run: gen_ui
+run: generate_ui
 	${PYTHON} main.py
 
 run_no_gui:
 	${PYTHON} main.py -c
 
-unit_tests:
+tests_unit:
 	${PYTHON} -m unittest discover test "*.py"
 
-verbose_unit_tests:
+tests_unit_verbose:
 	${PYTHON} -m unittest discover test "*.py" -v
 
 req_developer:
