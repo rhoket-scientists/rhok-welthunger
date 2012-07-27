@@ -91,6 +91,7 @@ def show_gui(args):
 	window = MainWindow(args = args)
 	#window.setWindowState(QtCore.Qt.WindowMaximized)
 	window.show()
+	window.raise_()
 	return app.exec_()
 
 
