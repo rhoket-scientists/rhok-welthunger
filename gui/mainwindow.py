@@ -12,7 +12,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.setupUi(self)
 
 		self.logger = logging.getLogger('vegetation')
-		self.setUnifiedTitleAndToolBarOnMac(True)
+
+		self.actionQuit.setShortcut(QKeySequence.Quit)
+		self.actionOpen_Images.setShortcut(QKeySequence.Open)
+		self.actionExport.setShortcut(QKeySequence.SaveAs)
+		self.actionPrint.setShortcut(QKeySequence.Print)
 
 		self.actionOpen_Images.triggered.connect(self.handle_button)
 		self.show()

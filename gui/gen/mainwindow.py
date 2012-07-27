@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/mainwindow.ui'
 #
-# Created: Fri Jul 27 12:39:28 2012
+# Created: Fri Jul 27 12:55:25 2012
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,6 +18,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(800, 600)
+        MainWindow.setDocumentMode(True)
+        MainWindow.setUnifiedTitleAndToolBarOnMac(True)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
@@ -40,18 +42,26 @@ class Ui_MainWindow(object):
         self.menuEdit = QtGui.QMenu(self.menubar)
         self.menuEdit.setObjectName(_fromUtf8("menuEdit"))
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        MainWindow.setStatusBar(self.statusbar)
         self.actionOpen_Images = QtGui.QAction(MainWindow)
         self.actionOpen_Images.setObjectName(_fromUtf8("actionOpen_Images"))
         self.actionQuit = QtGui.QAction(MainWindow)
         self.actionQuit.setObjectName(_fromUtf8("actionQuit"))
         self.actionAbout = QtGui.QAction(MainWindow)
         self.actionAbout.setObjectName(_fromUtf8("actionAbout"))
+        self.actionCredits = QtGui.QAction(MainWindow)
+        self.actionCredits.setObjectName(_fromUtf8("actionCredits"))
+        self.actionPrint = QtGui.QAction(MainWindow)
+        self.actionPrint.setObjectName(_fromUtf8("actionPrint"))
+        self.actionExport = QtGui.QAction(MainWindow)
+        self.actionExport.setObjectName(_fromUtf8("actionExport"))
         self.menuFile.addAction(self.actionOpen_Images)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionExport)
+        self.menuFile.addAction(self.actionPrint)
+        self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuHelp.addAction(self.actionAbout)
+        self.menuHelp.addAction(self.actionCredits)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
@@ -68,5 +78,8 @@ class Ui_MainWindow(object):
         self.actionOpen_Images.setText(QtGui.QApplication.translate("MainWindow", "Open Images", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionCredits.setText(QtGui.QApplication.translate("MainWindow", "Credits", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionPrint.setText(QtGui.QApplication.translate("MainWindow", "Print", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionExport.setText(QtGui.QApplication.translate("MainWindow", "Export", None, QtGui.QApplication.UnicodeUTF8))
 
 from gui.imageview import ImageView
