@@ -51,14 +51,15 @@ because Python and opencv only work with Python 2.6 on Ubuntu
 
 
 ##Setup on MacOS X
-1. `brew install opencv`
+1. `brew install opencv --with-tbb` --with-tbb enabes multithreaded image
+crunching
 1. `brew install pyqt`
 1. `easy_install pip`
 1. `make req_stable`
 
 
 ##Dependencies
-* `OpenCV` for image processing
+* `OpenCV` for image processing, please compile/install it with WITH_TBB to enable multithreading
 * `Qt` for the GUI
 * `Python` for the code
 	* `pyqt` as a binding for Qt
