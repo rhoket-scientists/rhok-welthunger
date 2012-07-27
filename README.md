@@ -41,6 +41,7 @@ This will generate `.py` files for all ui files.
 
 If you want to have isolated Python environments, we recommend to use [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/).
 
+If you want to freeze the requirements (aka create the requirements files), use `pip freeze -r devel-req.txt > stable-req.txt`.
 
 ## Setup on Linux (tested on Ubuntu)
 1. `sudo apt-get install python-pip` for Python dependency management
