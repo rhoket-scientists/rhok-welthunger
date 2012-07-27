@@ -22,18 +22,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		filenames = QFileDialog.getOpenFileNames(self, 'Select 3 files')
 		if not filenames:
 			return
-		try:
-			files = [str(f) for f in filenames]
+
+		files = [str(f) for f in filenames]
+		if len(files) == 3:
 			imagemerge.merge_to_file(files[0], files[1], files[2], '/tmp/foo.tiff')
 			self.show_merged_image('/tmp/foo.tiff')
-		except TypeError:
+		else:
 			QMessageBox.information(self, 'Error',
 			'Please select exactly 3 pictures', QMessageBox.Ok)
 
 
 	def show_merged_image(self, image):
-		pix = QPixmap(image).scaled(
-				self.mergedImage.size(),
-				Qt.KeepAspectRatio, Qt.FastTransformation)
-		self.mergedImage.setPixmap(pix)
+		pix = QPixmap(image)
+		#.scaled(
+	#			self.mergedImage.size(),
+#				Qt.KeepAspectRatio, Qt.FastTransformation)
+		#self.mergedImage.setPixmap(pix)
 
+		self.scene = QGraphicsScene()
+		self.scene.clear()
+		self.scene.addPixmap(pix)
+		self.imageView.setScene(self.scene)
+		self.scene.update()
