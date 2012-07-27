@@ -14,7 +14,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.logger = logging.getLogger('vegetation')
 		self.setUnifiedTitleAndToolBarOnMac(True)
 
-		self.openFileButton.clicked.connect(self.handle_button)
+		self.actionOpen_Images.triggered.connect(self.handle_button)
 		self.show()
 
 
