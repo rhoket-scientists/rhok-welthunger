@@ -4,7 +4,7 @@ PYUIC = pyuic4
 PYRCC = pyrcc4
 PYTHON = python
 
-all: unit_tests run_no_gui
+all: tests_unit run_no_gui
 
 UI 	:= $(shell cd ${GUI}; ls *.ui)
 
