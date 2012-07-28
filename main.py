@@ -36,14 +36,26 @@ class Application:
 			self.merge_in_new_thread()
 
 		if self.args.lawn_grass:
-			analysis_strategy.count_lawn_grass(self.args.lawn_grass[0])
+			self.count_lg_in_new_thread()
+
+		if self.args.dry_grass:
+			self.count_dg_in_new_thread()
 
 
 	def merge_in_new_thread(self):
 		img = self.args.merge_images
-		threading.Thread(target=imagemerge.merge_to_file,
-			args=((img[0], img[1], img[2],
-			'tmp/foo.tiff'))).start()
+		threading.Thread(target=lambda: imagemerge.merge_to_file(\
+				img[0], img[1], img[2],'tmp/foo.tiff')).start()
+
+
+	def count_lg_in_new_thread(self):
+		threading.Thread(target = lambda: analysis_strategy.count_lawn_grass(\
+				self.args.lawn_grass[0])).start()
+
+
+	def count_dg_in_new_thread(self):
+		threading.Thread(target = lambda: analysis_strategy.count_dry_grass(\
+				self.args.dry_grass[0])).start()
 
 
 	def init_parser(self):

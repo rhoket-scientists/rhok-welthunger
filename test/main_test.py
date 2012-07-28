@@ -19,7 +19,7 @@ class ApplicationTest(Imagetest):
 
 	@test("should run with 3 image files as arguments to merge")
 	def _(self, image_string, silence):
-		ok (os.system("python main.py -c -mi "+ image_string + silence)) == 0
+		ok (os.system("python main.py -c -mi "+ image_string)) == 0
 
 
 	@test("should fail with 2 image files as arguments to merge")
@@ -30,8 +30,8 @@ class ApplicationTest(Imagetest):
 
 	@test("should run with 1 images as argument to detect lawn or dry grass")
 	def _(self, silence, images):
-		ok (os.system("python main.py -c -lg "+ images[0] + silence)) == 0
-		ok (os.system("python main.py -c -dg "+ images[0] + silence)) == 0
+		ok (os.system("python main.py -c -lg "+ images[0])) == 0
+		ok (os.system("python main.py -c -dg "+ images[0])) == 0
 
 	@test("should fail with 1 images as argument to detect lawn or dry grass")
 	def _(self, silence, image_string):
