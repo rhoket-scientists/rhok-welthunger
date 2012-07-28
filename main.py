@@ -18,19 +18,21 @@ class Application:
 
 	def dispatch(self):
 		"""This is the place where the app does something
-		depending on its cli arguments"""
+		depending on its cli arguments.
+		Add functionality here (please oneliners to keep things tidy"""
 
 		if self.args.debug:
-			self.logger.debug("=== DEBUG MODE ===")
-			self.logger.debug("command line arguments:")
-			for k in vars(args):
-				logger.debug('{0}: {1}'.format(k,vars(args)[k]))
+			self.log_arguments()
 
 		if not self.args.nogui:
 			show_gui(self.args)
 
 		if self.args.images:
-			threading.Thread(target=imagemerge.merge_to_file,
+			self.merge_in_new_thread()
+
+
+	def merge_in_new_thread(self):
+		threading.Thread(target=imagemerge.merge_to_file,
 				args=((self.args.images[0], self.args.images[1], self.args.images[2],
 					'/tmp/foo.tiff'))).start()
 
@@ -87,8 +89,12 @@ class Application:
 		return app.exec_()
 
 
+	def log_arguments(self):
+		self.logger.debug("=== DEBUG MODE ===")
+		self.logger.debug("command line arguments:")
+		for k in vars(args):
+			logger.debug('{0}: {1}'.format(k,vars(args)[k]))
+
+
 if __name__ == '__main__':
 	Application().dispatch()
-
-
-

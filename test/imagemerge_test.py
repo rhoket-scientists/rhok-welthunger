@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import os
-import cv
 import unittest
-from oktest import *
+
+from oktest import test, ok
+import cv
+
 from lib import imagemerge
+from imagetest import Imagetest
 
-class ImageMergeTest(unittest.TestCase):
-
-	def provide_images(self):
-		return ['test/fixtures/img3x4.tiff',\
-				'test/fixtures/img1x1.tiff',\
-				'test/fixtures/img3x4.tiff']
-
+class ImageMergeTest(Imagetest):
 
 	def provide_loadedImages(self):
 		return [cv.LoadImage(img, 0) for img in self.provide_images()]
