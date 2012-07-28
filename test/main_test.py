@@ -33,6 +33,7 @@ class ApplicationTest(Imagetest):
 		ok (os.system("python main.py -c -lg "+ images[0])) == 0
 		ok (os.system("python main.py -c -dg "+ images[0])) == 0
 
+
 	@test("should fail with 1 images as argument to detect lawn or dry grass")
 	def _(self, silence, image_string):
 		NG (os.system("python main.py -c -lg "+ image_string + silence)) == 0

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/mainwindow.ui'
 #
-# Created: Fri Jul 27 13:14:04 2012
+# Created: Sat Jul 28 21:16:15 2012
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,6 +31,17 @@ class Ui_MainWindow(object):
         self.imageView.setResizeAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.imageView.setObjectName(_fromUtf8("imageView"))
         self.verticalLayout.addWidget(self.imageView)
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.dryGrassButton = QtGui.QPushButton(self.centralwidget)
+        self.dryGrassButton.setObjectName(_fromUtf8("dryGrassButton"))
+        self.horizontalLayout.addWidget(self.dryGrassButton)
+        self.lawnGrassButton = QtGui.QPushButton(self.centralwidget)
+        self.lawnGrassButton.setObjectName(_fromUtf8("lawnGrassButton"))
+        self.horizontalLayout.addWidget(self.lawnGrassButton)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
@@ -72,6 +83,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        self.dryGrassButton.setText(QtGui.QApplication.translate("MainWindow", "Dry Grass", None, QtGui.QApplication.UnicodeUTF8))
+        self.lawnGrassButton.setText(QtGui.QApplication.translate("MainWindow", "Lawn Grass", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))

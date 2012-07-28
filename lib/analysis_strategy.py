@@ -9,7 +9,7 @@ def count_dry_grass(img):
 
 def count_lawn_grass(img):
 	""" Feed me with band 4 """
-	return profile.evaluate(lambda: count(img,1085, 175), "Counting")
+	return profile.evaluate(lambda: count(img,185, 175), "Counting")
 
 
 def count(img, upper_thresh, lower_thresh):

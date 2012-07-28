@@ -30,7 +30,7 @@ class Application:
 			self.log_arguments()
 
 		if not self.args.nogui:
-			show_gui(self.args)
+			self.show_gui()
 
 		if self.args.merge_images:
 			self.merge_in_new_thread()
@@ -44,7 +44,7 @@ class Application:
 
 	def merge_in_new_thread(self):
 		img = self.args.merge_images
-		threading.Thread(target=lambda: imagemerge.merge_to_file(\
+		threading.Thread(target = lambda: imagemerge.merge_to_file(\
 				img[0], img[1], img[2],'tmp/foo.tiff')).start()
 
 
