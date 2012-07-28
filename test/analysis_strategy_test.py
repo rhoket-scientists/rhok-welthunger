@@ -18,8 +18,9 @@ class ImageMergeTest(Imagetest):
 
 	@test('should count grassy pixels')
 	def _(self, grassy):
-		ok (analysis_strategy.count_grass(grassy)) == 4
+		ok (analysis_strategy.count_dry_grass(grassy)) == 4
+
 
 	@test('should not count nongrassy pixels')
 	def _(self, non_grassy):
-		ok (analysis_strategy.count_grass(non_grassy)) == 0
+		ok (analysis_strategy.count_dry_grass(non_grassy)) == 0

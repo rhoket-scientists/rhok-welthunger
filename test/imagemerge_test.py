@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import unittest
 
 from oktest import test, ok
 import cv

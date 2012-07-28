@@ -1,31 +1,23 @@
 # -*- coding: utf-8 -*-
+import sys
 
 import cv
-import sys
-import logging
-import time
+
+import profile
 
 def load_images(images):
 	return [cv.LoadImage(img, 0) for img in images]
 
 
 def merge_images(img0, img1, img2):
-	logger = logging.getLogger('vegetation')
-
-	t0 = time.clock()
-	images = load_images([img0, img1, img2])
-	logger.info("Image loading took " + str(time.clock() - t0))
+	""" takes images in bgr order """
+	images = profile.evaluate(lambda: load_images([img0, img1, img2]), "Image loading")
 	for i in images:
 		assert i.depth == cv.IPL_DEPTH_8U
-
-	t1 = time.clock()
-	images = resize(images)
-	logger.info("Image resizing took " + str(time.clock() - t1))
-
+	images = profile.evaluate(lambda: resize(images), "Image resizing")
 	mergedImage = cv.CreateImage(min_size(images), cv.IPL_DEPTH_8U, 3)
-	t2 = time.clock()
-	cv.Merge(images[0], images[1], images[2], None, mergedImage)
-	logger.info("Image merging took " + str(time.clock() - t2))
+	profile.evaluate(lambda: cv.Merge(images[0], images[1], images[2], None,
+		mergedImage), "Image merging")
 
 	return mergedImage
 
@@ -45,11 +37,10 @@ def min_size(images):
 
 
 def merge_to_file(img0, img1, img2, filePath):
-	img = merge_images(img0, img1, img2)
-	t0 = time.clock()
-	cv.SaveImage(filePath, img)
-	logging.getLogger('vegetation').info("Saving merged image took " +
-			str(time.clock() - t0))
+	""" Takes images in rgb order """
+	img = merge_images(img2, img1, img0)
+	profile.evaluate(lambda: cv.SaveImage(filePath, img), "Image saving")
+
 
 if __name__ == '__main__':
 	merge_images(*sys.argv[1:])

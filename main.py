@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import threading
+
 import logging
 import argparse
-import threading
-from lib import imagemerge
+
+from lib import imagemerge, analysis_strategy
+
 
 class Application:
 
@@ -19,22 +22,28 @@ class Application:
 	def dispatch(self):
 		"""This is the place where the app does something
 		depending on its cli arguments.
-		Add functionality here (please oneliners to keep things tidy"""
+		Add functionality here (please oneliners to keep things tidy)"""
 
 		if self.args.debug:
+			global debug
+			debug = True
 			self.log_arguments()
 
 		if not self.args.nogui:
 			show_gui(self.args)
 
-		if self.args.images:
+		if self.args.merge_images:
 			self.merge_in_new_thread()
+
+		if self.args.lawn_grass:
+			analysis_strategy.count_lawn_grass(self.args.lawn_grass[0])
 
 
 	def merge_in_new_thread(self):
+		img = self.args.merge_images
 		threading.Thread(target=imagemerge.merge_to_file,
-				args=((self.args.images[0], self.args.images[1], self.args.images[2],
-					'/tmp/foo.tiff'))).start()
+			args=((img[0], img[1], img[2],
+			'tmp/foo.tiff'))).start()
 
 
 	def init_parser(self):
@@ -52,9 +61,15 @@ class Application:
 				type=argparse.FileType('w'),
 				default=sys.stdout,
 				help='write results to FILE (default is stdout)')
-		self.parser.add_argument('-i','--input', nargs=3,
+		self.parser.add_argument('-mi', '--merge-images', nargs=3,
 				default=None, metavar=('image1.tif'),
-				help="input images", dest='images')
+				help="Merge images in rgb order", dest='merge_images')
+		self.parser.add_argument('-lg', '--lawn-grass', nargs=1,
+				default=None, metavar=('image1.tif'),
+				help="Count pixels which are lawn grass", dest='lawn_grass')
+		self.parser.add_argument('-dg', '--dry-grass', nargs=1,
+				default=None, metavar=('image1.tif'),
+				help="Count pixels which are dry grass", dest='dry_grass')
 		self.parser.add_argument('--version', action='version',
 				version='%(prog)s 0.0.1')
 
@@ -92,8 +107,8 @@ class Application:
 	def log_arguments(self):
 		self.logger.debug("=== DEBUG MODE ===")
 		self.logger.debug("command line arguments:")
-		for k in vars(args):
-			logger.debug('{0}: {1}'.format(k,vars(args)[k]))
+		for k in vars(self.args):
+			self.logger.debug('{0}: {1}'.format(k,vars(self.args)[k]))
 
 
 if __name__ == '__main__':

@@ -21,6 +21,7 @@ Run `python main.py -h` to see all avaliable command line options.
 
 ##Get Satellite Images
 
+* http://earthexplorer.usgs.gov/ to select images, then grab the bulk downloader application, click an account, open the application and download
 * http://landsat.usgs.gov/LandsatLookImages.php
 * http://www.uni-kiel.de/forum-erdkunde/unterric/material/einf_fe/* kapitel_4_landsat_typ.htm
 * http://www.crwr.utexas.edu/gis/gishydro99/class/gomez/termproj.htm
