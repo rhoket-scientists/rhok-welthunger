@@ -9,12 +9,17 @@ from imagetest import Imagetest
 class ApplicationTest(Imagetest):
 
 	def provide_silence(self):
-		 return "&>/dev/null"
+		""" Use me to suppress prints to stdout, don't use me if this should
+			not be the case to help find defects """
+		return "&>/dev/null"
 
 
 	def provide_image_string(self):
 		return reduce(lambda x, y: x+' '+y,
 				super(ApplicationTest, self).provide_images())
+
+	def provide_output_image(self):
+		return '/test/fixture/output_img'
 
 
 	@test("should run with 3 image files as arguments to merge")
@@ -38,6 +43,11 @@ class ApplicationTest(Imagetest):
 	def _(self, silence, image_string):
 		NG (os.system("python main.py -c -lg "+ image_string + silence)) == 0
 		NG (os.system("python main.py -c -dg "+ image_string + silence)) == 0
+
+
+	@test("should take a path to 1 output image as parameter")
+	def _(self, output_image):
+		ok (os.system("python main.py -c -oimg " + output_image)) == 0
 
 
 if __name__ == '__main__':

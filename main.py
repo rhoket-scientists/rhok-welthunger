@@ -17,6 +17,10 @@ class Application:
 		self.register_cli_arguments()
 		self.args = self.parser.parse_args()
 		self.logger = self.init_logger()
+		if not self.args.output_image:
+			self.args.output_image = 'tmp/foo.tiff'
+		else:
+			self.args.output_image = self.args.output_image[0]
 
 
 	def dispatch(self):
@@ -45,7 +49,7 @@ class Application:
 	def merge_in_new_thread(self):
 		img = self.args.merge_images
 		threading.Thread(target = lambda: imagemerge.merge_to_file(\
-				img[0], img[1], img[2],'tmp/foo.tiff')).start()
+				img[0], img[1], img[2], self.args.output_image)).start()
 
 
 	def count_lg_in_new_thread(self):
@@ -73,6 +77,9 @@ class Application:
 				type=argparse.FileType('w'),
 				default=sys.stdout,
 				help='write results to FILE (default is stdout)')
+		self.parser.add_argument('-oimg', '--output-image', nargs=1,
+				default=None, metavar=('outputimage.tif'),
+				help="Write resulting image into a file", dest='output_image')
 		self.parser.add_argument('-mi', '--merge-images', nargs=3,
 				default=None, metavar=('image1.tif'),
 				help="Merge images in rgb order", dest='merge_images')
