@@ -45,6 +45,12 @@ class Application:
 		if self.args.dry_grass:
 			self.count_dg_in_new_thread()
 
+		if self.args.rvi:
+			self.rvi_in_new_thread()
+
+		if self.args.ndvi:
+			self.ndvi_in_new_thread()
+
 
 	def merge_in_new_thread(self):
 		img = self.args.merge_images
@@ -60,6 +66,20 @@ class Application:
 	def count_dg_in_new_thread(self):
 		threading.Thread(target = lambda: analysis_strategy.count_dry_grass(\
 				self.args.dry_grass[0])).start()
+
+
+	def rvi_in_new_thread(self):
+		bands = self.args.rvi
+		threading.Thread(target=lambda: \
+				analysis_strategy.rvi_to_file(bands[0], bands[1],
+					self.args.output_image)).start()
+
+
+	def ndvi_in_new_thread(self):
+		bands = self.args.ndvi
+		threading.Thread(target=lambda: \
+				analysis_strategy.ndvi_to_file(bands[0], bands[1],
+					self.args.output_image)).start()
 
 
 	def init_parser(self):
@@ -89,6 +109,14 @@ class Application:
 		self.parser.add_argument('-dg', '--dry-grass', nargs=1,
 				default=None, metavar=('image1.tif'),
 				help="Count pixels which are dry grass", dest='dry_grass')
+		self.parser.add_argument('-rvi', nargs=2,
+				default=None, metavar=('bandx.tif'),
+				help="Writes an image with the ratio vegetation index\
+				(band4/band3) into the output image given with -oimg", dest='rvi')
+		self.parser.add_argument('-ndvi', nargs=2,
+				default=None, metavar=('bandx.tif'),
+				help="Writes an image with the normalized difference vegetation index\
+				(band4-band3)/(band4+band3) into output image given with -oimg", dest='ndvi')
 		self.parser.add_argument('--version', action='version',
 				version='%(prog)s 0.0.1')
 

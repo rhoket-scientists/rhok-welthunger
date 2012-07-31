@@ -18,6 +18,10 @@ class ApplicationTest(Imagetest):
 		return reduce(lambda x, y: x+' '+y,
 				super(ApplicationTest, self).provide_images())
 
+	def provide_image(self):
+		return super(ApplicationTest, self).provide_images()[0]
+
+
 	def provide_output_image(self):
 		return '/test/fixture/output_img'
 
@@ -34,9 +38,9 @@ class ApplicationTest(Imagetest):
 
 
 	@test("should run with 1 images as argument to detect lawn or dry grass")
-	def _(self, silence, images):
-		ok (os.system("python main.py -c -lg "+ images[0])) == 0
-		ok (os.system("python main.py -c -dg "+ images[0])) == 0
+	def _(self, silence, image):
+		ok (os.system("python main.py -c -lg "+ image)) == 0
+		ok (os.system("python main.py -c -dg "+ image)) == 0
 
 
 	@test("should fail with 1 images as argument to detect lawn or dry grass")
@@ -48,6 +52,16 @@ class ApplicationTest(Imagetest):
 	@test("should take a path to 1 output image as parameter")
 	def _(self, output_image):
 		ok (os.system("python main.py -c -oimg " + output_image)) == 0
+
+
+	@test("should take paths to 2 images as parameter to compute the RVI")
+	def _(self, images):
+		ok (os.system("python main.py -c -rvi " + images[0]+' '+images[1])) == 0
+
+
+	@test("should take paths to 2 images as parameter to compute the NDVI")
+	def _(self, images):
+		ok (os.system("python main.py -c -ndvi " + images[0]+' '+images[1])) == 0
 
 
 if __name__ == '__main__':
