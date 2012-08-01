@@ -6,7 +6,7 @@ from oktest import test, ok
 import cv
 
 from lib import imagemerge
-from imagetest import Imagetest
+from test.imagetest import Imagetest
 
 class ImageMergeTest(Imagetest):
 

@@ -4,7 +4,7 @@ import os
 import oktest
 from oktest import test, ok, NG
 
-from imagetest import Imagetest
+from test.imagetest import Imagetest
 
 class ApplicationTest(Imagetest):
 
@@ -15,8 +15,7 @@ class ApplicationTest(Imagetest):
 
 
 	def provide_image_string(self):
-		return reduce(lambda x, y: x+' '+y,
-				super(ApplicationTest, self).provide_images())
+		return ' '.join(super(ApplicationTest, self).provide_images())
 
 	def provide_image(self):
 		return super(ApplicationTest, self).provide_images()[0]
@@ -43,7 +42,7 @@ class ApplicationTest(Imagetest):
 		ok (os.system("python main.py -c -dg "+ image)) == 0
 
 
-	@test("should fail with 1 images as argument to detect lawn or dry grass")
+	@test("should fail with 3 images as argument to detect lawn or dry grass")
 	def _(self, silence, image_string):
 		NG (os.system("python main.py -c -lg "+ image_string + silence)) == 0
 		NG (os.system("python main.py -c -dg "+ image_string + silence)) == 0
@@ -53,11 +52,9 @@ class ApplicationTest(Imagetest):
 	def _(self, output_image):
 		ok (os.system("python main.py -c -oimg " + output_image)) == 0
 
-
 	@test("should take paths to 2 images as parameter to compute the RVI")
 	def _(self, images):
 		ok (os.system("python main.py -c -rvi " + images[0]+' '+images[1])) == 0
-
 
 	@test("should take paths to 2 images as parameter to compute the NDVI")
 	def _(self, images):

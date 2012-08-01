@@ -12,10 +12,10 @@ from lib import imagemerge, analysis_strategy
 
 class Application:
 
-	def __init__(self):
+	def __init__(self, args=None):
 		self.parser = self.init_parser()
 		self.register_cli_arguments()
-		self.args = self.parser.parse_args()
+		self.args = self.parser.parse_args(args)
 		self.logger = self.init_logger()
 		if not self.args.output_image:
 			self.args.output_image = 'tmp/foo.tiff'
