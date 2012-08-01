@@ -22,35 +22,6 @@ def count(img, upper_thresh, lower_thresh):
 	return cv.CountNonZero(img)
 
 
-def rvi(band3, band4):
-	def crunch(band3, band4):
-		size = cv.GetSize(band3)
-		band3_32 = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-		band4_32 = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-
-		band3_32 = cv.ConvertScale(band3, band3_32, 1/255)
-		band4_32 = cv.ConvertScale(band4, band4_32, 1/255)
-
-		rvi_img = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-		print cv.GetSize(band4_32), cv.GetSize(band3_8)
-
-		cv.Div(band4_32, band3_32, rvi_img)
-
-		img8 = cv.CreateImage(cv.GetSize(rvi_img), cv.IPL_DEPTH_8U, 1)
-		cv.ConvertScale(rvi_img, img8, 255)
-		return img8
-
-	profile.evaluate(lambda: crunch(band3, band4), "RVI crunching")
-
-
-def rvi_to_file(band3_img, band4_img, out_img):
-	band3 = cv.LoadImage(band3_img, 0)
-	band4 = cv.LoadImage(band4_img, 0)
-	for i in [band3, band4]:
-		assert i.depth == cv.IPL_DEPTH_8U
-	cv.SaveImage(out_img, rvi(band3, band4))
-
-
 def ndvi_to_file(band3_img, band4_img, out_img):
 	band3 = cv.LoadImage(band3_img, 0)
 	band4 = cv.LoadImage(band4_img, 0)
