@@ -52,9 +52,6 @@ class ApplicationTest(Imagetest):
 	def _(self, output_image):
 		ok (os.system("python main.py -c -oimg " + output_image)) == 0
 
-	@test("should take paths to 2 images as parameter to compute the RVI")
-	def _(self, images):
-		ok (os.system("python main.py -c -rvi " + images[0]+' '+images[1])) == 0
 
 	@test("should take paths to 2 images as parameter to compute the NDVI")
 	def _(self, images):

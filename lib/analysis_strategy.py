@@ -46,7 +46,9 @@ def ndvi(band3, band4):
 
 	def convert(ndvi_img):
 		img8 = cv.CreateImage(cv.GetSize(ndvi_img), cv.IPL_DEPTH_8U, 1)
-		cv.ConvertScale(ndvi_img, img8, 100)
+		# scaling as suggested in:
+		# http://academic.emporia.edu/aberjame/remote/landsat/landsat_proc.htm
+		cv.ConvertScale(ndvi_img, img8, 100) # does rounding
 		return img8
 
 	img = profile.evaluate(crunch, "NDVI crunching")
@@ -62,4 +64,3 @@ def ndvi_histogram(ndvi_img, bins):
 
 def cv_hist_to_list(h, bins):
 	return [cv.QueryHistValue_1D(h, i) for i in xrange(bins)]
-
