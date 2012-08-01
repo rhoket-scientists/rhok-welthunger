@@ -27,10 +27,10 @@ run_no_gui:
 	${PYTHON} main.py -c
 
 tests_unit:
-	${PYTHON} -m unittest discover test "*.py"
+	${PYTHON} -m oktest test
 
 tests_unit_verbose:
-	${PYTHON} -m unittest discover test "*.py" -v
+	${PYTHON} -m oktest test
 
 req_developer:
 	pip install -r devel-req.txt
