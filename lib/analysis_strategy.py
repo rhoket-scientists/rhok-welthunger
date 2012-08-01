@@ -51,3 +51,15 @@ def ndvi(band3, band4):
 
 	img = profile.evaluate(crunch, "NDVI crunching")
 	return profile.evaluate(lambda: convert(img), "NDVI converting")
+
+
+def ndvi_histogram(ndvi_img, bins):
+	""" The bin parameter reflects the number of histogram buckets """
+	h = cv.CreateHist([bins], cv.CV_HIST_ARRAY, [(0,255)])
+	cv.CalcHist([ndvi_img], h)
+	return cv_hist_to_list(h, bins)
+
+
+def cv_hist_to_list(h, bins):
+	return [cv.QueryHistValue_1D(h, i) for i in xrange(bins)]
+
