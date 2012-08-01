@@ -21,6 +21,7 @@
 *.config
 
 #Images
+img
 *.tif
 
 app
@@ -30,3 +31,4 @@ app
 
 # temp files
 *~
+tmp
