@@ -5,13 +5,14 @@ import oktest
 from oktest import test, ok, NG
 
 from test.imagetest import Imagetest
+from main import Application
 
 class ApplicationTest(Imagetest):
 
 	def provide_silence(self):
 		""" Use me to suppress prints to stdout, don't use me if this should
 			not be the case to help find defects """
-		return "&>/dev/null"
+		return " &>/dev/null"
 
 
 	def provide_image_string(self):
@@ -23,6 +24,15 @@ class ApplicationTest(Imagetest):
 
 	def provide_output_image(self):
 		return '/test/fixture/output_img'
+
+
+	def provide_bins(self):
+		return '1'
+
+
+	@test("should take 1 image to create a histogram")
+	def _(self, image, bins, silence):
+		ok (os.system("python main.py -c -hist "+image+' '+bins + silence)) == 0
 
 
 	@test("should run with 3 image files as arguments to merge")

@@ -56,10 +56,11 @@ def ndvi(band3, band4):
 	return profile.evaluate(lambda: convert(img), "NDVI converting")
 
 
-def ndvi_histogram(ndvi_img, bins):
+def histogram(image, bins):
 	""" The bin parameter reflects the number of histogram buckets """
+	img = cv.LoadImage(image, 0)
 	h = cv.CreateHist([bins], cv.CV_HIST_ARRAY, [(0,255)])
-	cv.CalcHist([ndvi_img], h)
+	cv.CalcHist([img], h)
 	return cv_hist_to_list(h, bins)
 
 

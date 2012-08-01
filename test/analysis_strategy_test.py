@@ -51,7 +51,6 @@ class ImageMergeTest(Imagetest):
 
 	@test("should produce histogram as a python list")
 	def _(self, image):
-		img = cv.LoadImage(image, 0)
 		n_buckets = 4
-		h = analysis_strategy.ndvi_histogram(img, n_buckets)
+		h = analysis_strategy.histogram(image, n_buckets)
 		ok (h[0]) == 6

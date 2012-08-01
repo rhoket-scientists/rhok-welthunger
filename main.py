@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import threading
+from threading import Thread
 
 import logging
 import argparse
@@ -48,28 +48,41 @@ class Application:
 		if self.args.ndvi:
 			self.ndvi_in_new_thread()
 
+		if self.args.histogram:
+			self.histogram_in_new_thread()
+
+		return 0
+
 
 	def merge_in_new_thread(self):
 		img = self.args.merge_images
-		threading.Thread(target = lambda: imagemerge.merge_to_file(\
+		Thread(target = lambda: imagemerge.merge_to_file(\
 				img[0], img[1], img[2], self.args.output_image)).start()
 
 
 	def count_lg_in_new_thread(self):
-		threading.Thread(target = lambda: analysis_strategy.count_lawn_grass(\
+		Thread(target = lambda: analysis_strategy.count_lawn_grass(\
 				self.args.lawn_grass[0])).start()
 
 
 	def count_dg_in_new_thread(self):
-		threading.Thread(target = lambda: analysis_strategy.count_dry_grass(\
+		Thread(target = lambda: analysis_strategy.count_dry_grass(\
 				self.args.dry_grass[0])).start()
 
 
 	def ndvi_in_new_thread(self):
 		bands = self.args.ndvi
-		threading.Thread(target=lambda: \
+		Thread(target=lambda: \
 				analysis_strategy.ndvi_to_file(bands[0], bands[1],
 					self.args.output_image)).start()
+
+
+	def histogram_in_new_thread(self):
+		def compute():
+			print analysis_strategy.histogram(self.args.histogram[0],
+					int(self.args.histogram[1]))
+		Thread(target=compute).start()
+
 
 
 	def init_parser(self):
@@ -103,6 +116,11 @@ class Application:
 				default=None, metavar=('bandx.tif'),
 				help="Writes an image with the normalized difference vegetation index\
 				(band4-band3)/(band4+band3) into output image given with -oimg", dest='ndvi')
+		self.parser.add_argument('-hist', '--histogram', nargs=2,
+				default=None,
+				help="Creates histogram for each pixel value in (0, 255) with n bins",
+				dest='histogram')
+
 		self.parser.add_argument('--version', action='version',
 				version='%(prog)s 0.0.1')
 
