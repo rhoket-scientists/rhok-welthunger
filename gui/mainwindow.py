@@ -56,14 +56,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		files = [str(f) for f in filenames]
 		if len(files) == 3:
 			imagemerge.merge_to_file(files[0], files[1], files[2], 'tmp/foo.tiff')
-			self.show_merged_image('tmp/foo.tiff')
+			self.render_in_scene(self.load_and_resize_pixmap('tmp/foo.tiff'))
+
 		else:
 			QMessageBox.information(self, 'Error',
 			'Please select exactly 3 pictures', QMessageBox.Ok)
-
-
-	def show_merged_image(self, image):
-		render_in_scene(resize(pix))
 
 
 	def render_in_scene(self, pix):
