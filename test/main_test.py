@@ -55,7 +55,7 @@ class ApplicationTest(Imagetest):
 
 	@test("should take paths to 2 images as parameter to compute the NDVI")
 	def _(self, images):
-		ok (os.system("python main.py -c -ndvi " + images[0]+' '+images[1])) == 0
+		ok (os.system("python main.py -c -ndvi " + images[0]+' '+images[2])) == 0
 
 
 if __name__ == '__main__':

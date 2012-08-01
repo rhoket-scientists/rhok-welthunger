@@ -33,11 +33,12 @@ def ndvi_to_file(band3_img, band4_img, out_img):
 def ndvi(band3, band4):
 	def crunch():
 		size = cv.GetSize(band3)
-		ndvi_img = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
+		assert size == cv.GetSize(band4)
 		numerator = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-		denominator = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
 		cv.Sub(band4, band3, numerator)
+		denominator = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
 		cv.Add(band4, band3, denominator)
+		ndvi_img = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
 		cv.Div(numerator, denominator, ndvi_img)
 
 		# (NDVI + 1)
@@ -48,7 +49,7 @@ def ndvi(band3, band4):
 		img8 = cv.CreateImage(cv.GetSize(ndvi_img), cv.IPL_DEPTH_8U, 1)
 		# scaling as suggested in:
 		# http://academic.emporia.edu/aberjame/remote/landsat/landsat_proc.htm
-		cv.ConvertScale(ndvi_img, img8, 100) # does rounding
+		cv.ConvertScale(ndvi_img, img8, 100) # includes rounding
 		return img8
 
 	img = profile.evaluate(crunch, "NDVI crunching")
