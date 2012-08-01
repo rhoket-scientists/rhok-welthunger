@@ -29,9 +29,6 @@ run_no_gui:
 tests_unit:
 	${PYTHON} -m oktest test
 
-tests_unit_verbose:
-	${PYTHON} -m oktest test
-
 req_developer:
 	pip install -r devel-req.txt
 
