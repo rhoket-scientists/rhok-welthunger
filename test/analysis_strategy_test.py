@@ -43,7 +43,7 @@ class ImageMergeTest(Imagetest):
 		ok(band3_px) == 75.0
 		ok(band4_px) == 103.0
 
-		ndvi_px = analysis_strategy.ndvi(band3, band4)[0,0]
+		ndvi_px = analysis_strategy.ndvi(image, image_2)[0,0]
 		ndvi = (band4_px-band3_px)/(band4_px+band3_px)
 		# compare with delta to respect rounding errors
 		ok( round((ndvi + 1)*100) ).in_delta(int(ndvi_px), 2)

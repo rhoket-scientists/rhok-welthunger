@@ -52,8 +52,14 @@ def ndvi(band3, band4):
 		cv.ConvertScale(ndvi_img, img8, 100) # includes rounding
 		return img8
 
+	band3 = cv.LoadImage(band3, 0)
+	band4 = cv.LoadImage(band4, 0)
 	img = profile.evaluate(crunch, "NDVI crunching")
 	return profile.evaluate(lambda: convert(img), "NDVI converting")
+
+
+def ndvi_to_file(band3, band4, out_img='tmp/ndvi.tiff'):
+	cv.SaveImage(out_img, ndvi(band3, band4))
 
 
 def histogram(image, bins):

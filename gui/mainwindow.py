@@ -19,12 +19,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.actionExport.setShortcut(QKeySequence.SaveAs)
 		self.actionPrint.setShortcut(QKeySequence.Print)
 
-		self.actionOpen_Images.triggered.connect(self.handle_button)
+		self.actionOpen_Images.triggered.connect(self.handle_merge_files)
 
 		self.lawnGrassButton.clicked.connect(self.handle_lawn_grass_button)
 		self.dryGrassButton.clicked.connect(self.handle_dry_grass_button)
+		self.ndviButton.clicked.connect(self.handle_ndvi_button)
+
+		self.IMG_WIDTH = round(7771/2)
+		self.IMG_HEIGHT = round(6971/2)
 
 		self.show()
+
+
+	def handle_ndvi_button(self):
+		analysis_strategy.ndvi_to_file('img/2001-03-24/B30.TIF', 'img/2001-03-24/B40.TIF')
+		self.render_in_scene(self.load_and_resize_pixmap('tmp/ndvi.tiff'))
 
 
 	def handle_lawn_grass_button(self):
@@ -39,7 +48,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 				str(analysis_strategy.count_dry_grass(img)))
 
 
-	def handle_button(self):
+	def handle_merge_files(self):
 		filenames = QFileDialog.getOpenFileNames(self, 'Select 3 files')
 		if not filenames:
 			return
@@ -54,14 +63,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 	def show_merged_image(self, image):
-		pix = QPixmap(image)
-		#.scaled(
-	#			self.mergedImage.size(),
-#				Qt.KeepAspectRatio, Qt.FastTransformation)
-		#self.mergedImage.setPixmap(pix)
+		render_in_scene(resize(pix))
 
+
+	def render_in_scene(self, pix):
 		self.scene = QGraphicsScene()
 		self.scene.clear()
 		self.scene.addPixmap(pix)
 		self.imageView.setScene(self.scene)
 		self.scene.update()
+
+	def load_and_resize_pixmap(self, file_name):
+		return QPixmap(file_name) .scaled(self.IMG_WIDTH, self.IMG_HEIGHT,
+				Qt.KeepAspectRatio, Qt.FastTransformation)
+

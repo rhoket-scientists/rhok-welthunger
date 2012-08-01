@@ -53,6 +53,13 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="ndviButton">
+        <property name="text">
+         <string>NDVI</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="dryGrassButton">
         <property name="text">
          <string>Dry Grass</string>
