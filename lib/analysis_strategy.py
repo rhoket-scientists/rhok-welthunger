@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from threading import Thread
+
 import cv
 from lib import profile, imagemerge
 
@@ -31,15 +33,30 @@ def ndvi_to_file(band3_img, band4_img, out_img):
 
 
 def ndvi(band3, band4):
+	""" Compute Normalized Difference Vegetation Index """
+	q = [0, 1]
+	def numerator(size):
+		num = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
+		cv.Sub(band4, band3, num)
+		q[0] = num
+
+	def denominator(size):
+		den = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
+		cv.Add(band4, band3, den)
+		q[1] = den
+
 	def crunch():
 		size = cv.GetSize(band3)
 		assert size == cv.GetSize(band4)
-		numerator = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-		cv.Sub(band4, band3, numerator)
-		denominator = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-		cv.Add(band4, band3, denominator)
+
+		#Micro optimization ftw! Computes numerator and denominator in parallel
+		t0 = Thread(target=lambda: numerator(size))
+		t1 = Thread(target=lambda: denominator(size))
+		t0.start(); t1.start()
+		t0.join(); t1.join()
+
 		ndvi_img = cv.CreateImage(size, cv.IPL_DEPTH_32F, 1)
-		cv.Div(numerator, denominator, ndvi_img)
+		cv.Div(q[0], q[1], ndvi_img)
 
 		# (NDVI + 1)
 		cv.AddS(ndvi_img, 1, ndvi_img)
