@@ -21,8 +21,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 		self.actionOpen_Images.triggered.connect(self.handle_merge_files)
 
-		self.lawnGrassButton.clicked.connect(self.handle_lawn_grass_button)
-		self.dryGrassButton.clicked.connect(self.handle_dry_grass_button)
 		self.ndviButton.clicked.connect(self.handle_ndvi_button)
 
 		self.IMG_WIDTH = round(7771/2)
@@ -34,18 +32,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def handle_ndvi_button(self):
 		analysis_strategy.ndvi_to_file('img/2001-03-24/B30.TIF', 'img/2001-03-24/B40.TIF')
 		self.render_in_scene(self.load_and_resize_pixmap('tmp/ndvi.tiff'))
-
-
-	def handle_lawn_grass_button(self):
-		img = 'img/2001-03-24/B40.TIF'
-		logging.getLogger('vegetation').info("Lawn: "+
-				str(analysis_strategy.count_lawn_grass(img)))
-
-
-	def handle_dry_grass_button(self):
-		img = 'img/2001-03-24/B30.TIF'
-		logging.getLogger('vegetation').info("Dry: " +
-				str(analysis_strategy.count_dry_grass(img)))
 
 
 	def handle_merge_files(self):
@@ -73,4 +59,3 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def load_and_resize_pixmap(self, file_name):
 		return QPixmap(file_name) .scaled(self.IMG_WIDTH, self.IMG_HEIGHT,
 				Qt.KeepAspectRatio, Qt.FastTransformation)
-
