@@ -55,21 +55,7 @@
       <item>
        <widget class="QPushButton" name="ndviButton">
         <property name="text">
-         <string>NDVI</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="dryGrassButton">
-        <property name="text">
-         <string>Dry Grass</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="lawnGrassButton">
-        <property name="text">
-         <string>Lawn Grass</string>
+         <string>Show NDVI</string>
         </property>
        </widget>
       </item>
@@ -114,6 +100,9 @@
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionOpen_Images">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Open Images</string>
    </property>

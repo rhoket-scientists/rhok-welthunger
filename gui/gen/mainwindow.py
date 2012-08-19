@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/mainwindow.ui'
 #
-# Created: Thu Aug  2 00:13:51 2012
+# Created: Sun Aug 19 18:27:38 2012
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,12 +38,6 @@ class Ui_MainWindow(object):
         self.ndviButton = QtGui.QPushButton(self.centralwidget)
         self.ndviButton.setObjectName(_fromUtf8("ndviButton"))
         self.horizontalLayout.addWidget(self.ndviButton)
-        self.dryGrassButton = QtGui.QPushButton(self.centralwidget)
-        self.dryGrassButton.setObjectName(_fromUtf8("dryGrassButton"))
-        self.horizontalLayout.addWidget(self.dryGrassButton)
-        self.lawnGrassButton = QtGui.QPushButton(self.centralwidget)
-        self.lawnGrassButton.setObjectName(_fromUtf8("lawnGrassButton"))
-        self.horizontalLayout.addWidget(self.lawnGrassButton)
         self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -57,6 +51,7 @@ class Ui_MainWindow(object):
         self.menuEdit.setObjectName(_fromUtf8("menuEdit"))
         MainWindow.setMenuBar(self.menubar)
         self.actionOpen_Images = QtGui.QAction(MainWindow)
+        self.actionOpen_Images.setEnabled(True)
         self.actionOpen_Images.setObjectName(_fromUtf8("actionOpen_Images"))
         self.actionQuit = QtGui.QAction(MainWindow)
         self.actionQuit.setObjectName(_fromUtf8("actionQuit"))
@@ -86,9 +81,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.ndviButton.setText(QtGui.QApplication.translate("MainWindow", "NDVI", None, QtGui.QApplication.UnicodeUTF8))
-        self.dryGrassButton.setText(QtGui.QApplication.translate("MainWindow", "Dry Grass", None, QtGui.QApplication.UnicodeUTF8))
-        self.lawnGrassButton.setText(QtGui.QApplication.translate("MainWindow", "Lawn Grass", None, QtGui.QApplication.UnicodeUTF8))
+        self.ndviButton.setText(QtGui.QApplication.translate("MainWindow", "Show NDVI", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
