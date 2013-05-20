@@ -1,5 +1,9 @@
 # Team Rhoket Scientists for Welthungerhilfe
 
+![Screenshot](http://jups.pegasus.uberspace.de/dropbox/vegetation-analyzer.jpg)
+
+[Video Screencast](http://youtu.be/GQ_tvrJaj_c)
+
 This software analyzes a given set of landsat satellite images to show how the land is used. It visualizes the different surface patterns with different colors.
 
 It should help Welthungerhilfe to have strong arguments for disputing with the government of Sierra Leone about shifting land usage patterns.
