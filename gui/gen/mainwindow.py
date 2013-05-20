@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui/mainwindow.ui'
 #
-# Created: Sun Aug 19 18:27:38 2012
+# Created: Mon May 20 14:09:58 2013
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Vegetation Analyzer", None, QtGui.QApplication.UnicodeUTF8))
         self.ndviButton.setText(QtGui.QApplication.translate("MainWindow", "Show NDVI", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))

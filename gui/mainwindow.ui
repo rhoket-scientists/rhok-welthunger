@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Vegetation Analyzer</string>
   </property>
   <property name="documentMode">
    <bool>true</bool>
