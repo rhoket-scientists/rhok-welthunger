@@ -2,6 +2,8 @@
 
 ![Screenshot](http://jups.pegasus.uberspace.de/dropbox/vegetation-analyzer.jpg)
 
+[![Video Screencast](http://jups.pegasus.uberspace.de/dropbox/screencast-preview.jpg)](http://youtu.be/GQ_tvrJaj_c)
+
 [Video Screencast](http://youtu.be/GQ_tvrJaj_c)
 
 This software analyzes a given set of landsat satellite images to show how the land is used. It visualizes the different surface patterns with different colors.
