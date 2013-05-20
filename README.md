@@ -6,7 +6,7 @@
 
 [Video Screencast](http://youtu.be/ziEIVJqQO0k)
 
-This software analyzes a given set of landsat satellite images to show how the land is used. It visualizes the different surface patterns with different colors.
+This software analyzes a given set of [landsat](http://en.wikipedia.org/wiki/Landsat) satellite images to show how the land is used. It visualizes the different surface patterns with different colors.
 
 It should help Welthungerhilfe to have strong arguments for disputing with the government of Sierra Leone about shifting land usage patterns.
 
