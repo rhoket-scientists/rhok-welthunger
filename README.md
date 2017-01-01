@@ -11,8 +11,7 @@ This software analyzes a given set of [landsat](http://en.wikipedia.org/wiki/Lan
 It should help Welthungerhilfe to have strong arguments for disputing with the government of Sierra Leone about shifting land usage patterns.
 
 The project got startet at the 3. Random Hacks of Kindness in Berlin from
-2012-06-02 to 2012-06-03. We are currently rebuilding and extending the
-application in Python.
+2012-06-02 to 2012-06-03 where it got awarded the second prize. In the following months, we re-implemted and extended the application in Python. We closed the voluntary project in September 2013 by demonstrating technical feasibility of an automated analysis of land usage using satellite images to staff from [Welthungerhilfe](http://www.welthungerhilfe.de/), one of the largest German development cooperation agencies.
 
 * The problem page: http://www.rhok.org/problems/shifting-patterns-land-use-and-availability-land-pujehun-district-southern-sierra-leone
 
